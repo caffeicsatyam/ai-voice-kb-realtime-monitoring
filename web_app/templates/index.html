@@ -6,25 +6,25 @@
     <title>QuickFund AI Voice Agent — Loan Qualification</title>
     <meta name="description" content="AI-powered voice agent for small business loan qualification using Google ADK">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
     <div class="app-container">
         <!-- Header -->
-        <div class="header">
-            <h1>🏦 QuickFund Loan Qualification Agent</h1>
+        <div class="header glass-panel">
+            <h1>🏦 QuickFund</h1>
             <nav class="nav-links">
-                <a href="/" class="active">Q1: Loan Agent</a>
-                <a href="/philippines">Q3: Philippines</a>
-                <a href="/indonesia">Q3: Indonesia</a>
-                <a href="/dashboard">Q4: Nudges</a>
+                <a href="/" class="active">Loan Agent</a>
+                <a href="/philippines">Philippines</a>
+                <a href="/indonesia">Indonesia</a>
+                <a href="/dashboard">Nudges</a>
             </nav>
-            <span class="badge live">● ADK Live</span>
+            <span class="badge live"><span class="status-dot green"></span> Live</span>
         </div>
 
         <!-- Chat Panel -->
-        <div class="chat-panel">
+        <div class="chat-panel glass-panel">
             <div id="chat-messages" class="chat-messages">
                 <!-- Messages appear here -->
             </div>
@@ -37,7 +37,7 @@
 
         <!-- Sidebar -->
         <div class="sidebar">
-            <div class="sidebar-card">
+            <div class="sidebar-card glass-panel">
                 <h3>Agent Status</h3>
                 <div class="status-row">
                     <span class="label">Agent</span>
@@ -61,7 +61,7 @@
                 </div>
             </div>
 
-            <div class="sidebar-card">
+            <div class="sidebar-card glass-panel">
                 <h3>Qualification Fields</h3>
                 <div class="status-row"><span class="label">Business Name</span><span id="q-name" class="value">—</span></div>
                 <div class="status-row"><span class="label">Business Age</span><span id="q-age" class="value">—</span></div>
@@ -72,7 +72,7 @@
                 <div class="status-row"><span class="label">Status</span><span id="q-status" class="value"><span class="status-dot orange"></span>Pending</span></div>
             </div>
 
-            <div class="sidebar-card">
+            <div class="sidebar-card glass-panel">
                 <h3>ADK Tools</h3>
                 <div id="tool-log" style="max-height: 150px; overflow-y: auto; font-size: 0.75rem; color: var(--text-muted);">
                     <p>Tool calls will appear here...</p>

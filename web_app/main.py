@@ -236,6 +236,32 @@ async def chat_endpoint(request: Request):
         return JSONResponse({"error": str(e)}, status_code=500)
 
 
+@app.post("/api/nudge-event")
+async def nudge_event_endpoint(request: Request):
+    """
+    Broadcast a deterministic replay event to connected nudge dashboards.
+    Body may contain a transcript chunk, emitted nudge, or suppression event.
+    """
+    body = await request.json()
+    body.setdefault("received_at", datetime.now().isoformat())
+
+    disconnected = []
+    for client in list(nudge_clients):
+        try:
+            await client.send_json(body)
+        except Exception:
+            disconnected.append(client)
+
+    for client in disconnected:
+        if client in nudge_clients:
+            nudge_clients.remove(client)
+
+    return JSONResponse({
+        "broadcast": True,
+        "clients": len(nudge_clients),
+        "event_type": body.get("event_type", "nudge"),
+    })
+
 @app.post("/api/nudge-analyze")
 async def nudge_analyze_endpoint(request: Request):
     """

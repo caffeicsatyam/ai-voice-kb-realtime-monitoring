@@ -120,6 +120,7 @@ def replay_transcript(
     transcript_name: str = "cooperative",
     speed_factor: float = 1.0,
     output_mode: str = "cli",
+    api_url: Optional[str] = None,
 ) -> dict:
     """
     Replay a transcript at simulated real-time speed and analyze each chunk.
@@ -127,14 +128,21 @@ def replay_transcript(
     Args:
         transcript_name: Name of the transcript to replay.
         speed_factor: Speed multiplier (1.0 = real-time, 0.5 = half speed).
-        output_mode: "cli" for terminal output, "json" for structured output.
+        output_mode: "cli" for terminal output, "web" to stream to dashboard, "json" for structured output.
+        api_url: Optional dashboard endpoint, e.g. http://127.0.0.1:8001/api/nudge-event.
     
     Returns:
         Dict with nudges, latency measurements, and summary.
     """
     reset_nudge_state()
-    
-    transcript = SAMPLE_TRANSCRIPTS.get(transcript_name, SAMPLE_TRANSCRIPTS["cooperative"])
+    output_mode = output_mode.lower().strip()
+    stream_to_web = output_mode in {"web", "dashboard"}
+
+    transcript = (
+        SAMPLE_TRANSCRIPTS.get(transcript_name)
+        or SAMPLE_TRANSCRIPTS.get("cooperative")
+        or next(iter(SAMPLE_TRANSCRIPTS.values()))
+    )
     
     all_nudges = []
     all_suppressed = []
@@ -143,6 +151,8 @@ def replay_transcript(
     print(f"\n{'='*70}")
     print(f"  REAL-TIME TRANSCRIPT REPLAY: {transcript_name}")
     print(f"  Speed: {speed_factor}x | Chunks: {len(transcript)} | Mode: {output_mode}")
+    if stream_to_web:
+        print("  Dashboard: streaming replay events to FastAPI /api/nudge-event")
     print(f"{'='*70}\n")
     
     for i, chunk in enumerate(transcript):
@@ -155,6 +165,13 @@ def replay_transcript(
                 time.sleep(delay)
         
         print(f"[{chunk['time']}] {chunk['speaker'].upper()}: {chunk['text'][:80]}...")
+        if stream_to_web:
+            _post_nudge_event({
+                "event_type": "transcript",
+                "timestamp": chunk["time"],
+                "speaker": chunk["speaker"],
+                "chunk": chunk["text"],
+            }, api_url=api_url)
         
         # === Stage 1: Signal Detection ===
         t0 = time.time()
@@ -210,6 +227,22 @@ def replay_transcript(
             else:
                 all_suppressed.append(nudge_data)
                 print(f"   SUPPRESSED: {nudge_data.get('reason', 'unknown')}")
+
+            if stream_to_web:
+                event_payload = {
+                    "event_type": "nudge" if nudge_data.get("emitted") else "suppressed",
+                    "timestamp": chunk["time"],
+                    "speaker": chunk["speaker"],
+                    "chunk": chunk["text"],
+                    "analysis": nudge_data.get("nudge") or nudge_data.get("reason", "No nudge emitted."),
+                    "emitted": nudge_data.get("emitted", False),
+                    "signal": nudge_data.get("signal") or nudge_data.get("signal_type"),
+                    "priority": nudge_data.get("priority", "suppressed"),
+                    "confidence": nudge_data.get("confidence", signal.get("confidence")),
+                    "reason": nudge_data.get("reason"),
+                    "evidence": nudge_data.get("evidence") or "; ".join(signal.get("evidence", [])),
+                }
+                _post_nudge_event(event_payload, api_url=api_url)
     
     # === Summary ===
     print(f"\n{'='*70}")
@@ -265,18 +298,31 @@ if __name__ == "__main__":
     # Allow selecting transcript from command line
     name = sys.argv[1] if len(sys.argv) > 1 else "cooperative"
     speed = float(sys.argv[2]) if len(sys.argv) > 2 else 0.3  # Fast for demo
-    
+    mode = sys.argv[3] if len(sys.argv) > 3 else os.environ.get("NUDGE_REPLAY_MODE", "web")
+    api_url = sys.argv[4] if len(sys.argv) > 4 else os.environ.get("NUDGE_API_URL")
+
     available = list(SAMPLE_TRANSCRIPTS.keys())
-    
+
     if name == "all":
         for transcript_name in available:
-            results = replay_transcript(transcript_name, speed_factor=speed)
+            results = replay_transcript(
+                transcript_name,
+                speed_factor=speed,
+                output_mode=mode,
+                api_url=api_url,
+            )
             save_results(results)
     elif name in available:
-        results = replay_transcript(name, speed_factor=speed)
+        results = replay_transcript(
+            name,
+            speed_factor=speed,
+            output_mode=mode,
+            api_url=api_url,
+        )
         save_results(results)
     else:
         print(f"Available transcripts: {', '.join(available)}")
-        print(f"Usage: python -m realtime_nudges.stream_replay [name|all] [speed]")
+        print("Usage: python -m realtime_nudges.stream_replay [name|all] [speed] [web|cli|json] [api_url]")
+        print("Example: python -m realtime_nudges.stream_replay cooperative 0.3 web http://127.0.0.1:8001/api/nudge-event")
 
 

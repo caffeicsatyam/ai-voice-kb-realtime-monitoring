@@ -226,20 +226,22 @@ class NudgeDashboard {
         this.ws = null;
         this.nudgeFeed = document.getElementById('nudge-feed');
         this.nudgeCount = 0;
+        this.suppressedCount = 0;
+        this.signalCounts = {};
         this.latencyData = [];
-        
+
         this.connectWebSocket();
     }
 
     connectWebSocket() {
         const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
         this.ws = new WebSocket(`${protocol}//${location.host}/ws/nudges`);
-        
+
         this.ws.onopen = () => {
             console.log('Nudge dashboard WebSocket connected');
             this.updateStatus('Connected', 'green');
         };
-        
+
         this.ws.onmessage = (event) => {
             try {
                 const data = JSON.parse(event.data);
@@ -248,54 +250,138 @@ class NudgeDashboard {
                 console.error('Failed to parse nudge data:', e);
             }
         };
-        
+
+        this.ws.onerror = () => {
+            this.updateStatus('Connection issue', 'orange');
+        };
+
         this.ws.onclose = () => {
             console.log('WebSocket disconnected');
             this.updateStatus('Disconnected', 'red');
-            // Reconnect after 3 seconds
             setTimeout(() => this.connectWebSocket(), 3000);
         };
     }
 
     addNudge(data) {
         if (!this.nudgeFeed) return;
-        
-        this.nudgeCount++;
-        
-        const div = document.createElement('div');
-        let priority = 'medium';
-        let signalType = '';
-        let nudgeText = data.analysis || '';
-        
-        // Parse the analysis for display
-        if (data.analysis) {
-            if (data.analysis.includes('high') || data.analysis.includes('frustration') || data.analysis.includes('disclosure')) {
-                priority = 'high';
-            } else if (data.analysis.includes('suppressed') || data.analysis.includes('No actionable')) {
-                priority = 'suppressed';
-            } else if (data.analysis.includes('low') || data.analysis.includes('callback')) {
-                priority = 'low';
-            }
+
+        this.clearPlaceholder();
+
+        const isTranscript = data.event_type === 'transcript';
+        const isSuppressed = data.event_type === 'suppressed' || data.emitted === false;
+        const isNudge = !isTranscript && !isSuppressed;
+
+        if (isNudge) {
+            this.nudgeCount++;
+            this.updateText('nudge-count', this.nudgeCount);
+            this.updateText('total-nudges', this.nudgeCount);
+        } else if (isSuppressed) {
+            this.suppressedCount++;
+            this.updateText('suppressed-count', this.suppressedCount);
         }
-        
+
+        const signal = data.signal || data.signal_type || '';
+        if (signal && !isTranscript) {
+            this.signalCounts[signal] = (this.signalCounts[signal] || 0) + 1;
+            this.updateSignalCount(signal);
+        }
+
+        const div = document.createElement('div');
+        const priority = this.resolvePriority(data, isTranscript, isSuppressed);
         div.className = `nudge-item ${priority}`;
-        div.innerHTML = `
-            <div class="nudge-signal">${data.timestamp || ''} — ${priority.toUpperCase()}</div>
-            <div class="nudge-text">${nudgeText.substring(0, 200)}</div>
-            <div class="nudge-meta">Chunk: "${(data.chunk || '').substring(0, 80)}..."</div>
-        `;
-        
+
+        const title = document.createElement('div');
+        title.className = 'nudge-signal';
+        title.textContent = this.eventTitle(data, priority, isTranscript, isSuppressed);
+
+        const text = document.createElement('div');
+        text.className = 'nudge-text';
+        text.textContent = this.eventText(data, isTranscript, isSuppressed);
+
+        const meta = document.createElement('div');
+        meta.className = 'nudge-meta';
+        meta.textContent = this.eventMeta(data, signal, isTranscript);
+
+        div.appendChild(title);
+        div.appendChild(text);
+        div.appendChild(meta);
         this.nudgeFeed.insertBefore(div, this.nudgeFeed.firstChild);
-        
-        // Update counter
-        const counter = document.getElementById('nudge-count');
-        if (counter) counter.textContent = this.nudgeCount;
+    }
+
+    clearPlaceholder() {
+        const placeholder = this.nudgeFeed.querySelector('p');
+        if (placeholder) placeholder.remove();
+    }
+
+    resolvePriority(data, isTranscript, isSuppressed) {
+        if (isTranscript) return 'transcript';
+        if (isSuppressed) return 'suppressed';
+        if (data.priority) return data.priority;
+
+        const analysis = (data.analysis || '').toLowerCase();
+        if (analysis.includes('high') || analysis.includes('frustration') || analysis.includes('disclosure')) {
+            return 'high';
+        }
+        if (analysis.includes('low') || analysis.includes('callback')) {
+            return 'low';
+        }
+        return 'medium';
+    }
+
+    eventTitle(data, priority, isTranscript, isSuppressed) {
+        const timestamp = data.timestamp || '';
+        if (isTranscript) {
+            return `${timestamp} - ${(data.speaker || 'speaker').toUpperCase()}`;
+        }
+        if (isSuppressed) {
+            return `${timestamp} - SUPPRESSED`;
+        }
+        const signal = (data.signal || data.signal_type || 'nudge').replaceAll('_', ' ');
+        return `${timestamp} - ${priority.toUpperCase()} - ${signal}`;
+    }
+
+    eventText(data, isTranscript, isSuppressed) {
+        if (isTranscript) return data.chunk || '';
+        if (data.nudge) return data.nudge;
+        if (data.analysis) return data.analysis;
+        if (isSuppressed && data.reason) return `Suppressed: ${data.reason}`;
+        return 'No actionable signal detected.';
+    }
+
+    eventMeta(data, signal, isTranscript) {
+        if (isTranscript) return 'Transcript chunk';
+
+        const parts = [];
+        if (signal) parts.push(`Signal: ${signal}`);
+        if (data.confidence !== undefined && data.confidence !== null) parts.push(`Confidence: ${data.confidence}`);
+        if (data.evidence) parts.push(`Evidence: ${String(data.evidence).substring(0, 80)}`);
+        if (data.chunk) parts.push(`Chunk: ${String(data.chunk).substring(0, 80)}...`);
+        return parts.join(' | ');
+    }
+
+    updateSignalCount(signal) {
+        const ids = {
+            missed_cross_sell: 'sig-cross',
+            missing_disclosure: 'sig-disc',
+            frustration: 'sig-frust',
+            payment_difficulty: 'sig-pay',
+            callback_need: 'sig-cb',
+            noisy_segment: 'sig-noise',
+        };
+        const id = ids[signal];
+        if (id) this.updateText(id, this.signalCounts[signal]);
+    }
+
+    updateText(id, value) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = value;
     }
 
     updateStatus(status, color) {
-        const el = document.getElementById('ws-status');
-        if (el) {
-            el.innerHTML = `<span class="status-dot ${color}"></span>${status}`;
-        }
+        const html = `<span class="status-dot ${color}"></span>${status}`;
+        const header = document.getElementById('ws-status');
+        const pipeline = document.getElementById('pipeline-ws');
+        if (header) header.innerHTML = html;
+        if (pipeline) pipeline.innerHTML = html;
     }
 }

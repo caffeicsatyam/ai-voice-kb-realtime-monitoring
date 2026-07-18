@@ -310,3 +310,14 @@
 {"timestamp": "2026-07-18T15:20:32.501902", "stage": "agent_turn", "duration_ms": 3535.52, "metadata": {"agent": "indonesia", "fallback": true}}
 {"timestamp": "2026-07-18T15:21:07.528534", "stage": "agent_turn", "duration_ms": 4210.12, "metadata": {"agent": "philippines", "fallback": true}}
 {"timestamp": "2026-07-18T15:24:30.299955", "stage": "agent_turn", "duration_ms": 3170.05, "metadata": {"agent": "nudge", "fallback": true}}
+{"timestamp": "2026-07-18T15:23:51.798640", "stage": "signal_detection", "duration_ms": 5.69, "metadata": {"chunk_index": 0, "timestamp": "00:00:02"}}
+{"timestamp": "2026-07-18T15:24:18.466212", "stage": "signal_detection", "duration_ms": 0.13, "metadata": {"chunk_index": 1, "timestamp": "00:00:10"}}
+{"timestamp": "2026-07-18T15:24:45.133956", "stage": "signal_detection", "duration_ms": 0.31, "metadata": {"chunk_index": 2, "timestamp": "00:00:18"}}
+{"timestamp": "2026-07-18T15:25:18.468212", "stage": "signal_detection", "duration_ms": 0.23, "metadata": {"chunk_index": 3, "timestamp": "00:00:28"}}
+{"timestamp": "2026-07-18T15:25:45.136138", "stage": "signal_detection", "duration_ms": 0.2, "metadata": {"chunk_index": 4, "timestamp": "00:00:36"}}
+{"timestamp": "2026-07-18T15:26:15.160311", "stage": "signal_detection", "duration_ms": 0.26, "metadata": {"chunk_index": 5, "timestamp": "00:00:45"}}
+{"timestamp": "2026-07-18T15:26:48.494771", "stage": "signal_detection", "duration_ms": 0.26, "metadata": {"chunk_index": 6, "timestamp": "00:00:55"}}
+{"timestamp": "2026-07-18T15:27:21.829795", "stage": "signal_detection", "duration_ms": 0.36, "metadata": {"chunk_index": 7, "timestamp": "00:01:05"}}
+{"timestamp": "2026-07-18T15:27:45.165157", "stage": "signal_detection", "duration_ms": 0.59, "metadata": {"chunk_index": 8, "timestamp": "00:01:12"}}
+{"timestamp": "2026-07-18T15:28:25.165915", "stage": "signal_detection", "duration_ms": 0.18, "metadata": {"chunk_index": 9, "timestamp": "00:01:24"}}
+{"timestamp": "2026-07-18T15:28:45.167244", "stage": "signal_detection", "duration_ms": 0.17, "metadata": {"chunk_index": 10, "timestamp": "00:01:30"}}

@@ -5,24 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QuickFund — Real-Time Nudge Dashboard</title>
     <meta name="description" content="Real-time live insights and nudges from call audio analysis">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
     <div class="app-container">
-        <div class="header">
-            <h1>📊 Real-Time Nudge Dashboard</h1>
+        <div class="header glass-panel">
+            <h1>📊 Real-Time Nudges</h1>
             <nav class="nav-links">
-                <a href="/">Q1: Loan Agent</a>
-                <a href="/philippines">Q3: Philippines</a>
-                <a href="/indonesia">Q3: Indonesia</a>
-                <a href="/dashboard" class="active">Q4: Nudges</a>
+                <a href="/">Loan Agent</a>
+                <a href="/philippines">Philippines</a>
+                <a href="/indonesia">Indonesia</a>
+                <a href="/dashboard" class="active">Nudges</a>
             </nav>
             <span id="ws-status" class="badge demo"><span class="status-dot blue"></span>Connecting...</span>
         </div>
 
         <!-- Nudge Feed -->
-        <div class="chat-panel">
+        <div class="chat-panel glass-panel">
             <div style="padding: 12px 20px; background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
                 <h3 style="font-size: 0.9rem; color: var(--text-secondary);">Live Nudge Feed</h3>
                 <span style="font-size: 0.8rem; color: var(--text-muted);">Nudges: <strong id="nudge-count">0</strong></span>
@@ -30,7 +30,7 @@
             <div id="nudge-feed" class="nudge-feed" style="flex: 1; padding: 16px; overflow-y: auto;">
                 <p style="color: var(--text-muted); text-align: center; padding: 40px 0;">
                     Waiting for call audio...<br>
-                    <small>Run <code>python -m realtime_nudges.stream_replay</code> to start analysis</small>
+                    <small>Run <code id="replay-command">python -m realtime_nudges.stream_replay</code> to start analysis</small>
                 </p>
             </div>
             
@@ -47,7 +47,7 @@
 
         <!-- Metrics Sidebar -->
         <div class="sidebar">
-            <div class="sidebar-card">
+            <div class="sidebar-card glass-panel">
                 <h3>Pipeline Status</h3>
                 <div class="status-row">
                     <span class="label">WebSocket</span>
@@ -63,7 +63,7 @@
                 </div>
             </div>
 
-            <div class="sidebar-card">
+            <div class="sidebar-card glass-panel">
                 <h3>Latency Metrics</h3>
                 <div class="metric-grid">
                     <div class="metric-box">
@@ -85,7 +85,7 @@
                 </div>
             </div>
 
-            <div class="sidebar-card">
+            <div class="sidebar-card glass-panel">
                 <h3>Nudge Controls</h3>
                 <div class="status-row">
                     <span class="label">Confidence ≥</span>
@@ -105,7 +105,7 @@
                 </div>
             </div>
 
-            <div class="sidebar-card">
+            <div class="sidebar-card glass-panel">
                 <h3>Signal Types</h3>
                 <div class="status-row"><span class="label">🎯 Missed Cross-sell</span><span id="sig-cross" class="value">0</span></div>
                 <div class="status-row"><span class="label">⚠️ Missing Disclosure</span><span id="sig-disc" class="value">0</span></div>
@@ -120,6 +120,10 @@
     <script src="/static/js/voice.js"></script>
     <script>
         const dashboard = new NudgeDashboard();
+        const replayCommand = document.getElementById('replay-command');
+        if (replayCommand) {
+            replayCommand.textContent = `python -m realtime_nudges.stream_replay cooperative 0.3 web ${location.origin}/api/nudge-event`;
+        }
         
         async function testNudge() {
             const chunk = document.getElementById('test-chunk').value;
