@@ -329,3 +329,7 @@
 {"timestamp": "2026-07-18T15:44:09.822309", "stage": "agent_turn", "duration_ms": 6928.37, "metadata": {"agent": "philippines", "fallback": true}}
 {"timestamp": "2026-07-18T15:45:25.390193", "stage": "agent_turn", "duration_ms": 6426.56, "metadata": {"agent": "philippines", "fallback": true}}
 {"timestamp": "2026-07-18T15:45:48.957057", "stage": "agent_turn", "duration_ms": 9440.72, "metadata": {"agent": "philippines", "fallback": true}}
+{"timestamp": "2026-07-18T23:08:11.444829", "stage": "agent_turn", "duration_ms": 7074.8, "metadata": {"agent": "loan", "fallback": true}}
+{"timestamp": "2026-07-18T23:08:40.115311", "stage": "agent_turn", "duration_ms": 8223.51, "metadata": {"agent": "loan", "fallback": true}}
+{"timestamp": "2026-07-18T23:25:10.787912", "stage": "agent_turn", "duration_ms": 4299.96, "metadata": {"agent": "loan", "fallback": false}}
+{"timestamp": "2026-07-18T23:25:42.865215", "stage": "agent_turn", "duration_ms": 8298.95, "metadata": {"agent": "loan", "fallback": false}}

@@ -29,6 +29,14 @@ flowchart LR
     NUDGE --> LOGS[Evidence and latency logs]
 ```
 
+### Agent Architectures
+
+- **Loan Qualification Agent (Q1)**: A specialized ADK agent focused on business loan origination. It is equipped with custom tools (`retrieve_kb` for BM25 local search, `crm_mock` for lead creation, and `escalate_human`) and strictly constrained to decline out-of-scope requests (like personal mortgages).
+- **Philippines Voice Agent (Q3)**: A localized agent tailored for life insurance and bancassurance. It is instructed to fluidly code-switch between English, Tagalog, and Taglish, using natural finance terminology (e.g., *premium*, *rider*, *lapse*) while handling objections contextually for the Philippine market.
+- **Indonesia Voice Agent (Q3)**: A localized consumer-finance agent. It handles both formal and colloquial Bahasa Indonesia, naturally incorporates English loanwords (like *down payment*), and gracefully manages regional dialect cues without breaking character.
+- **Real-Time Nudge Agent (Q4)**: A high-speed, deterministic pipeline that analyzes streaming audio chunks. It bypasses the slower LLM loop for latency-critical tasks, using regex pattern matching and stateful cooldown/suppression rules to broadcast actionable JSON nudges via WebSockets.
+- **Fallback System**: A safety layer using LangChain and Groq. If the primary Google API is exhausted, invalid, or fails, the system catches the error and seamlessly hot-swaps to a secondary Gemini model or Groq backup (`llama-3.3-70b-versatile`) to ensure zero-downtime conversation flow.
+
 ## Stack and Cost
 
 - Google ADK and Gemini are the primary orchestration/model path.

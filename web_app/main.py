@@ -85,13 +85,7 @@ nudge_clients: list[WebSocket] = []
 async def run_agent_turn(agent_name: str, session_id: str, user_message: str) -> str:
     """Run a single turn with ADK, falling back to LangChain/Groq on failure."""
     agent = AGENT_MAP.get(agent_name, loan_qualification_agent)
-
-    runner = Runner(
-        agent=agent,
-        app_name="quickfund_assessment",
-        session_service=session_service,
-        auto_create_session=True,
-    )
+    original_model = agent.model
 
     user_content = types.Content(
         role="user",
@@ -102,36 +96,59 @@ async def run_agent_turn(agent_name: str, session_id: str, user_message: str) ->
     response_text = ""
     tool_calls_log = []
     used_fallback = False
+    
+    models_to_try = [original_model, "gemini-3.1-flash-lite", "gemini-3.0-flash", "gemini-2.5-flash", "gemini-2.0-flash-lite"]
+    success = False
+    last_exc = None
 
-    try:
-        async for event in runner.run_async(
-            user_id="demo_user",
-            session_id=session_id,
-            new_message=user_content,
-        ):
-            if event.is_final_response():
-                if event.content and event.content.parts:
-                    response_text = "\n".join(
-                        part.text for part in event.content.parts if part.text
-                    )
+    for current_model in models_to_try:
+        agent.model = current_model
+        runner = Runner(
+            agent=agent,
+            app_name="quickfund_assessment",
+            session_service=session_service,
+            auto_create_session=True,
+        )
+        
+        try:
+            async for event in runner.run_async(
+                user_id="demo_user",
+                session_id=session_id,
+                new_message=user_content,
+            ):
+                if event.is_final_response():
+                    if event.content and event.content.parts:
+                        response_text = "\n".join(
+                            part.text for part in event.content.parts if part.text
+                        )
 
-            # Log tool calls for evidence
-            if hasattr(event, "function_calls") and event.function_calls:
-                for fc in event.function_calls:
-                    tool_call = {
-                        "tool": fc.name,
-                        "args": dict(fc.args) if fc.args else {},
-                        "timestamp": datetime.now().isoformat(),
-                    }
-                    tool_calls_log.append(tool_call)
+                # Log tool calls for evidence
+                if hasattr(event, "function_calls") and event.function_calls:
+                    for fc in event.function_calls:
+                        tool_call = {
+                            "tool": fc.name,
+                            "args": dict(fc.args) if fc.args else {},
+                            "timestamp": datetime.now().isoformat(),
+                        }
+                        tool_calls_log.append(tool_call)
 
-                    # Log KB retrievals specifically
-                    if fc.name == "retrieve_kb":
-                        log_citation_usage(fc.name, dict(fc.args) if fc.args else {}, "")
-    except Exception as exc:
+                        # Log KB retrievals specifically
+                        if fc.name == "retrieve_kb":
+                            log_citation_usage(fc.name, dict(fc.args) if fc.args else {}, "")
+            
+            success = True
+            break
+        except Exception as exc:
+            logger.warning(f"ADK agent failed with model {current_model}: {exc}")
+            last_exc = exc
+            continue
+
+    agent.model = original_model
+
+    if not success:
         logger.warning(
-            "ADK agent failed; attempting LangChain Groq fallback: %s",
-            exc,
+            "All ADK models failed; attempting LangChain Groq fallback: %s",
+            last_exc,
             exc_info=True,
         )
         try:
