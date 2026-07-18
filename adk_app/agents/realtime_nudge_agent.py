@@ -48,7 +48,7 @@ Keep responses very short — this is a real-time system.
 
 realtime_nudge_agent = Agent(
     name="realtime_nudge_agent",
-    model="gemini-2.0-flash",
+    model="gemini-2.5-flash",
     description="Real-time call analysis agent that detects signals in transcript chunks and emits prioritized, controlled nudges.",
     instruction=NUDGE_AGENT_INSTRUCTION,
     tools=[

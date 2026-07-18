@@ -75,3 +75,5 @@ The builder ingests eight mixed Markdown source files, strips navigation and boi
 ## Security
 
 `.env`, recordings, generated caches, and local logs are ignored where appropriate. The source KB demonstrates PII redaction, and the agents are instructed not to collect sensitive identifiers or bank-account details in conversation.
+
+python -m realtime_nudges.stream_replay cooperative 0.3 web http://127.0.0.1:8001/api/nudge-event
