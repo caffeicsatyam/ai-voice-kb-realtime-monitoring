@@ -85,20 +85,23 @@ The builder ingests eight mixed Markdown source files, strips navigation and boi
 
 ## Guardrails
 
-A full input-validation and output-safety middleware pipeline sits between the user and the ADK agents. All guardrail events are logged to `evidence/logs/guardrail_events.jsonl`.
+A hybrid two-layer guardrail pipeline sits between the user and the ADK agents. All guardrail events are logged to `evidence/logs/guardrail_events.jsonl`.
 
-**Input guardrails** (run before any model call):
+**Layer 1 — Regex (deterministic, zero-latency, free):**
 - Prompt injection and jailbreak detection (system-prompt override, DAN, role-play escape)
-- PII solicitation prevention (blocks attempts to make the agent collect SSNs, bank accounts, credit cards, PINs)
+- PII solicitation prevention (SSNs, bank accounts, credit cards, PINs)
 - Toxicity and threat filtering
 - Off-topic scope guard (crypto trading, medical diagnosis, malware generation)
+- Output overpromise detection, PII leakage check, and toxic content filter
 
-**Output guardrails** (run after the agent responds):
-- Overpromise detection — appends an approval-disclaimer when the agent guarantees outcomes
-- PII leakage check — blocks responses containing SSN/TIN patterns, credit card numbers, or bank account numbers
-- Toxic content filter — replaces harmful agent output with a safe fallback
+**Layer 2 — LLM via LangChain + Groq (catches novel attacks):**
+- Runs only when `GROQ_API_KEY` is configured; gracefully degrades to regex-only otherwise
+- Classifies messages that passed the regex layer using an LLM safety classifier
+- Catches creative jailbreaks, subtle toxicity, and hallucinated claims that regex can't detect
+- Returns structured JSON verdicts (`block` or `warn` severity)
+- Fail-open: if the LLM call fails, the regex result stands
 
-A blocked input returns a safe rejection immediately without burning model tokens. A blocked output is replaced by a safe fallback response. The `/api/guardrail-stats` endpoint exposes event counts by category.
+A regex-blocked input is rejected instantly without calling any model. An LLM-blocked input is rejected before calling the agent. A blocked output is replaced by a safe fallback response. The `/api/guardrail-stats` endpoint exposes event counts by category.
 
 ## Security
 

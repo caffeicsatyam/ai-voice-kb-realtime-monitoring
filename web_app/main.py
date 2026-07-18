@@ -42,6 +42,7 @@ from web_app.guardrail_middleware import (
     InputGuard,
     OutputGuard,
     GuardrailLogger,
+    LLMGuard,
 )
 
 logging.basicConfig(level=logging.INFO)
@@ -73,6 +74,7 @@ groq_fallback = LangChainGroqFallbackMiddleware()
 input_guard = InputGuard()
 output_guard = OutputGuard()
 guardrail_logger = GuardrailLogger()
+llm_guard = LLMGuard()
 
 # Agent map for routing
 AGENT_MAP = {
@@ -100,11 +102,11 @@ async def run_agent_turn(agent_name: str, session_id: str, user_message: str) ->
     """
     guard_meta: dict = {}
 
-    # --- InputGuard: validate user message before calling any model ---
+    # --- Layer 1: Regex InputGuard ---
     input_result = input_guard.check(user_message)
     if input_result.blocked:
         guardrail_logger.log(
-            stage="input",
+            stage="input_regex",
             guard_result=input_result,
             agent_name=agent_name,
             session_id=session_id,
@@ -114,9 +116,32 @@ async def run_agent_turn(agent_name: str, session_id: str, user_message: str) ->
             "input_blocked": True,
             "category": input_result.category,
             "reason": input_result.reason,
+            "layer": "regex",
         }
         return {
             "response": input_result.reason,
+            "fallback": False,
+            "guardrail": guard_meta,
+        }
+
+    # --- Layer 2: LLM InputGuard (only if regex passed) ---
+    llm_input_result = await llm_guard.check_input(user_message)
+    if llm_input_result.blocked:
+        guardrail_logger.log(
+            stage="input_llm",
+            guard_result=llm_input_result,
+            agent_name=agent_name,
+            session_id=session_id,
+            snippet=user_message,
+        )
+        guard_meta = {
+            "input_blocked": True,
+            "category": llm_input_result.category,
+            "reason": llm_input_result.reason,
+            "layer": "llm",
+        }
+        return {
+            "response": llm_input_result.reason,
             "fallback": False,
             "guardrail": guard_meta,
         }
@@ -216,11 +241,11 @@ async def run_agent_turn(agent_name: str, session_id: str, user_message: str) ->
     })
     last_turn_fallback[session_id] = used_fallback
 
-    # --- OutputGuard: validate agent response before sending to user ---
+    # --- Layer 1: Regex OutputGuard ---
     response_text, output_result = output_guard.apply(response_text)
     if output_result.blocked or output_result.warnings:
         guardrail_logger.log(
-            stage="output",
+            stage="output_regex",
             guard_result=output_result,
             agent_name=agent_name,
             session_id=session_id,
@@ -231,7 +256,46 @@ async def run_agent_turn(agent_name: str, session_id: str, user_message: str) ->
             "output_flagged": bool(output_result.warnings),
             "category": output_result.category,
             "reason": output_result.reason,
+            "layer": "regex",
         }
+
+    # --- Layer 2: LLM OutputGuard (only if regex didn't hard-block) ---
+    if not output_result.blocked:
+        llm_output_result = await llm_guard.check_output(response_text)
+        if llm_output_result.blocked:
+            guardrail_logger.log(
+                stage="output_llm",
+                guard_result=llm_output_result,
+                agent_name=agent_name,
+                session_id=session_id,
+                snippet=response_text,
+            )
+            response_text = output_guard.SAFE_FALLBACK
+            guard_meta = {
+                "output_blocked": True,
+                "output_flagged": False,
+                "category": llm_output_result.category,
+                "reason": llm_output_result.reason,
+                "layer": "llm",
+            }
+        elif llm_output_result.warnings:
+            guardrail_logger.log(
+                stage="output_llm",
+                guard_result=llm_output_result,
+                agent_name=agent_name,
+                session_id=session_id,
+                snippet=response_text,
+            )
+            for warning in llm_output_result.warnings:
+                if warning not in response_text:
+                    response_text += f"\n\n*{warning}*"
+            guard_meta = {
+                "output_blocked": False,
+                "output_flagged": True,
+                "category": llm_output_result.category,
+                "reason": llm_output_result.reason,
+                "layer": "llm",
+            }
 
     # Store transcript
     if session_id not in transcripts:
