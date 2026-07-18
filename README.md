@@ -1,6 +1,9 @@
 # AI Voice ADK Assessment
 
+**Demo Video:** [https://youtu.be/_dzADRP0vLs?si=-mvF6I2vddqOVuvw](https://youtu.be/_dzADRP0vLs?si=-mvF6I2vddqOVuvw)
+
 A free/local-first implementation of the AI Engineer assessment. Google ADK orchestrates four specialized agents; FastAPI supplies a browser voice interface and local dashboard; the knowledge base and nudge pipeline run locally.
+
 
 ## Assessment Coverage
 
