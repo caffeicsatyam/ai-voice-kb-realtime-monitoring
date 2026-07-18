@@ -83,8 +83,25 @@ The builder ingests eight mixed Markdown source files, strips navigation and boi
 - Capture final browser-call recordings into `evidence/recordings/` before submitting. Do not use real customer data.
 - See `docs/limitations.md` and `docs/production_improvements.md` for honest scope and next steps.
 
+## Guardrails
+
+A full input-validation and output-safety middleware pipeline sits between the user and the ADK agents. All guardrail events are logged to `evidence/logs/guardrail_events.jsonl`.
+
+**Input guardrails** (run before any model call):
+- Prompt injection and jailbreak detection (system-prompt override, DAN, role-play escape)
+- PII solicitation prevention (blocks attempts to make the agent collect SSNs, bank accounts, credit cards, PINs)
+- Toxicity and threat filtering
+- Off-topic scope guard (crypto trading, medical diagnosis, malware generation)
+
+**Output guardrails** (run after the agent responds):
+- Overpromise detection — appends an approval-disclaimer when the agent guarantees outcomes
+- PII leakage check — blocks responses containing SSN/TIN patterns, credit card numbers, or bank account numbers
+- Toxic content filter — replaces harmful agent output with a safe fallback
+
+A blocked input returns a safe rejection immediately without burning model tokens. A blocked output is replaced by a safe fallback response. The `/api/guardrail-stats` endpoint exposes event counts by category.
+
 ## Security
 
 `.env`, recordings, generated caches, and local logs are ignored where appropriate. The source KB demonstrates PII redaction, and the agents are instructed not to collect sensitive identifiers or bank-account details in conversation.
 
-python -m realtime_nudges.stream_replay cooperative 0.3 web http://127.0.0.1:8001/api/nudge-event
+    python -m realtime_nudges.stream_replay cooperative 0.3 web http://127.0.0.1:8001/api/nudge-event

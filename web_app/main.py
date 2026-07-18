@@ -38,6 +38,11 @@ from web_app.langchain_middleware import (
     GroqFallbackUnavailable,
     LangChainGroqFallbackMiddleware,
 )
+from web_app.guardrail_middleware import (
+    InputGuard,
+    OutputGuard,
+    GuardrailLogger,
+)
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -65,6 +70,9 @@ templates = Jinja2Templates(directory=str(web_dir / "templates"))
 # === ADK Session Management ===
 session_service = InMemorySessionService()
 groq_fallback = LangChainGroqFallbackMiddleware()
+input_guard = InputGuard()
+output_guard = OutputGuard()
+guardrail_logger = GuardrailLogger()
 
 # Agent map for routing
 AGENT_MAP = {
@@ -82,8 +90,37 @@ last_turn_fallback = {}  # session_id -> bool
 nudge_clients: list[WebSocket] = []
 
 
-async def run_agent_turn(agent_name: str, session_id: str, user_message: str) -> str:
-    """Run a single turn with ADK, falling back to LangChain/Groq on failure."""
+async def run_agent_turn(agent_name: str, session_id: str, user_message: str) -> dict:
+    """Run a single turn with ADK, falling back to LangChain/Groq on failure.
+
+    Returns a dict with keys:
+        response  – the final text to send to the user
+        fallback  – whether the Groq fallback was used
+        guardrail – dict with input/output guard metadata (may be empty)
+    """
+    guard_meta: dict = {}
+
+    # --- InputGuard: validate user message before calling any model ---
+    input_result = input_guard.check(user_message)
+    if input_result.blocked:
+        guardrail_logger.log(
+            stage="input",
+            guard_result=input_result,
+            agent_name=agent_name,
+            session_id=session_id,
+            snippet=user_message,
+        )
+        guard_meta = {
+            "input_blocked": True,
+            "category": input_result.category,
+            "reason": input_result.reason,
+        }
+        return {
+            "response": input_result.reason,
+            "fallback": False,
+            "guardrail": guard_meta,
+        }
+
     agent = AGENT_MAP.get(agent_name, loan_qualification_agent)
     original_model = agent.model
 
@@ -179,6 +216,23 @@ async def run_agent_turn(agent_name: str, session_id: str, user_message: str) ->
     })
     last_turn_fallback[session_id] = used_fallback
 
+    # --- OutputGuard: validate agent response before sending to user ---
+    response_text, output_result = output_guard.apply(response_text)
+    if output_result.blocked or output_result.warnings:
+        guardrail_logger.log(
+            stage="output",
+            guard_result=output_result,
+            agent_name=agent_name,
+            session_id=session_id,
+            snippet=response_text,
+        )
+        guard_meta = {
+            "output_blocked": output_result.blocked,
+            "output_flagged": bool(output_result.warnings),
+            "category": output_result.category,
+            "reason": output_result.reason,
+        }
+
     # Store transcript
     if session_id not in transcripts:
         transcripts[session_id] = []
@@ -194,9 +248,14 @@ async def run_agent_turn(agent_name: str, session_id: str, user_message: str) ->
         "tool_calls": tool_calls_log,
         "latency_ms": round(latency_ms, 2),
         "fallback": used_fallback,
+        "guardrail": guard_meta,
     })
 
-    return response_text
+    return {
+        "response": response_text,
+        "fallback": used_fallback,
+        "guardrail": guard_meta,
+    }
 
 # === Page Routes ===
 
@@ -241,12 +300,13 @@ async def chat_endpoint(request: Request):
         return JSONResponse({"error": "Message is required"}, status_code=400)
     
     try:
-        response = await run_agent_turn(agent_name, session_id, message)
+        result = await run_agent_turn(agent_name, session_id, message)
         return JSONResponse({
-            "response": response,
+            "response": result["response"],
             "session_id": session_id,
             "agent": agent_name,
-            "fallback": last_turn_fallback.get(session_id, False),
+            "fallback": result["fallback"],
+            "guardrail": result.get("guardrail", {}),
         })
     except Exception as e:
         logger.error(f"Agent error: {e}", exc_info=True)
@@ -298,14 +358,14 @@ async def nudge_analyze_endpoint(request: Request):
     prompt = f"Analyze this transcript chunk for signals. Speaker: {speaker}. Timestamp: {timestamp}. Chunk: \"{chunk}\""
     
     try:
-        response = await run_agent_turn("nudge", session_id, prompt)
+        result = await run_agent_turn("nudge", session_id, prompt)
         
         # Broadcast to WebSocket clients
         nudge_data = {
             "timestamp": timestamp,
             "chunk": chunk,
             "speaker": speaker,
-            "analysis": response,
+            "analysis": result["response"],
             "received_at": datetime.now().isoformat(),
         }
         for client in nudge_clients:
@@ -351,6 +411,14 @@ async def get_latency():
     return JSONResponse(stats)
 
 
+@app.get("/api/guardrail-stats")
+async def get_guardrail_stats():
+    """Get guardrail event counts by category."""
+    return JSONResponse({
+        "guardrail_events": guardrail_logger.stats,
+    })
+
+
 @app.get("/api/evidence-logs")
 async def get_evidence_logs():
     """List evidence log files."""
@@ -390,12 +458,12 @@ async def nudge_websocket(websocket: WebSocket):
                 
                 if chunk:
                     prompt = f"Analyze this transcript chunk for signals. Speaker: {speaker}. Timestamp: {timestamp}. Chunk: \"{chunk}\""
-                    response = await run_agent_turn("nudge", f"ws_{int(time.time())}", prompt)
+                    result = await run_agent_turn("nudge", f"ws_{int(time.time())}", prompt)
                     
                     await websocket.send_json({
                         "timestamp": timestamp,
                         "chunk": chunk,
-                        "analysis": response,
+                        "analysis": result["response"],
                     })
             except json.JSONDecodeError:
                 pass

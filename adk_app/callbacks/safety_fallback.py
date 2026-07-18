@@ -1,24 +1,26 @@
 """
 Safety Fallback Callback
 Enforces safety guardrails on agent responses.
+Delegates to the shared OutputGuard so patterns are not duplicated.
 """
-import re
 import logging
+import sys
+from pathlib import Path
+
+# Add project root so the web_app package is importable
+sys.path.insert(0, str(Path(__file__).parent.parent.parent))
+
+from web_app.guardrail_middleware import OutputGuard
 
 logger = logging.getLogger(__name__)
 
-# Phrases that indicate the agent might be hallucinating or overpromising
-RISKY_PATTERNS = [
-    r"(?:your\s+loan\s+(?:is|has\s+been)\s+(?:approved|guaranteed))",
-    r"(?:(?:100|one\s+hundred)\s*%\s*(?:chance|guaranteed|certain))",
-    r"(?:no\s+risk\s+(?:at\s+all|whatsoever))",
-    r"(?:i\s+(?:promise|guarantee)\s+(?:that|you))",
-]
+# Shared OutputGuard instance
+_output_guard = OutputGuard()
 
-# Safe fallback messages
+# Expose the safe fallback messages for backward compatibility
 FALLBACK_MESSAGES = {
     "hallucination_risk": "I want to make sure I give you accurate information. Let me check our knowledge base for that.",
-    "overpromise_risk": "Please note that all approvals are subject to document verification and final review.",
+    "overpromise_risk": _output_guard.OVERPROMISE_DISCLAIMER.strip(),
     "unknown_topic": "I don't have information about that in our current knowledge base. Would you like me to connect you with a specialist?",
 }
 
@@ -26,18 +28,24 @@ FALLBACK_MESSAGES = {
 def check_response_safety(response_text: str) -> dict:
     """
     Check an agent response for potential safety issues.
+    Delegates to OutputGuard for pattern matching.
     
     Returns:
         Dict with 'safe' boolean, 'issues' list, and 'suggested_additions' list.
     """
+    result = _output_guard.check(response_text)
+
     issues = []
     suggestions = []
-    
-    for pattern in RISKY_PATTERNS:
-        if re.search(pattern, response_text, re.IGNORECASE):
-            issues.append(f"Potential overpromise detected: pattern '{pattern}' matched")
-            suggestions.append(FALLBACK_MESSAGES["overpromise_risk"])
-    
+
+    if result.blocked:
+        issues.append(f"Blocked: {result.reason}")
+        suggestions.append(_output_guard.SAFE_FALLBACK)
+
+    if result.warnings:
+        issues.append(f"Warnings in category '{result.category}'")
+        suggestions.extend(result.warnings)
+
     return {
         "safe": len(issues) == 0,
         "issues": issues,
