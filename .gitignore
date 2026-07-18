@@ -1,0 +1,46 @@
+# Secrets and credentials
+.env
+*.key
+*.pem
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+
+# Audio recordings (may contain PII)
+evidence/recordings/*.wav
+evidence/recordings/*.mp3
+evidence/recordings/*.webm
+evidence/recordings/*.ogg
+
+# Generated caches and indexes
+knowledge_base/bm25_index.json
+knowledge_base/*.sqlite
+*.faiss
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Node (if dashboard uses npm)
+node_modules/
+
+# Logs (keep structure, ignore large logs)
+evidence/logs/*.log

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickFund — Real-Time Nudge Dashboard</title>
+    <meta name="description" content="Real-time live insights and nudges from call audio analysis">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <h1>📊 Real-Time Nudge Dashboard</h1>
+            <nav class="nav-links">
+                <a href="/">Q1: Loan Agent</a>
+                <a href="/philippines">Q3: Philippines</a>
+                <a href="/indonesia">Q3: Indonesia</a>
+                <a href="/dashboard" class="active">Q4: Nudges</a>
+            </nav>
+            <span id="ws-status" class="badge demo"><span class="status-dot blue"></span>Connecting...</span>
+        </div>
+
+        <!-- Nudge Feed -->
+        <div class="chat-panel">
+            <div style="padding: 12px 20px; background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="font-size: 0.9rem; color: var(--text-secondary);">Live Nudge Feed</h3>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Nudges: <strong id="nudge-count">0</strong></span>
+            </div>
+            <div id="nudge-feed" class="nudge-feed" style="flex: 1; padding: 16px; overflow-y: auto;">
+                <p style="color: var(--text-muted); text-align: center; padding: 40px 0;">
+                    Waiting for call audio...<br>
+                    <small>Run <code>python -m realtime_nudges.stream_replay</code> to start analysis</small>
+                </p>
+            </div>
+            
+            <!-- Manual chunk input for testing -->
+            <div class="chat-input">
+                <input type="text" id="test-chunk" placeholder="Paste a transcript chunk to test..." autocomplete="off">
+                <select id="test-speaker" style="padding: 10px; background: var(--bg-input); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: var(--radius-sm);">
+                    <option value="customer">Customer</option>
+                    <option value="agent">Agent</option>
+                </select>
+                <button id="test-btn" class="btn btn-primary" onclick="testNudge()">Analyze</button>
+            </div>
+        </div>
+
+        <!-- Metrics Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-card">
+                <h3>Pipeline Status</h3>
+                <div class="status-row">
+                    <span class="label">WebSocket</span>
+                    <span id="pipeline-ws" class="value"><span class="status-dot blue"></span>Connecting</span>
+                </div>
+                <div class="status-row">
+                    <span class="label">Signal Engine</span>
+                    <span class="value"><span class="status-dot green"></span>Active</span>
+                </div>
+                <div class="status-row">
+                    <span class="label">Nudge Controls</span>
+                    <span class="value"><span class="status-dot green"></span>Enabled</span>
+                </div>
+            </div>
+
+            <div class="sidebar-card">
+                <h3>Latency Metrics</h3>
+                <div class="metric-grid">
+                    <div class="metric-box">
+                        <div class="metric-value" id="p50-value">—</div>
+                        <div class="metric-label">P50 (ms)</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-value" id="p95-value">—</div>
+                        <div class="metric-label">P95 (ms)</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-value" id="total-nudges">0</div>
+                        <div class="metric-label">Total Nudges</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-value" id="suppressed-count">0</div>
+                        <div class="metric-label">Suppressed</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-card">
+                <h3>Nudge Controls</h3>
+                <div class="status-row">
+                    <span class="label">Confidence ≥</span>
+                    <span class="value">0.70</span>
+                </div>
+                <div class="status-row">
+                    <span class="label">Cooldown</span>
+                    <span class="value">15s</span>
+                </div>
+                <div class="status-row">
+                    <span class="label">Max per Type</span>
+                    <span class="value">3</span>
+                </div>
+                <div class="status-row">
+                    <span class="label">Default Expiry</span>
+                    <span class="value">30s</span>
+                </div>
+            </div>
+
+            <div class="sidebar-card">
+                <h3>Signal Types</h3>
+                <div class="status-row"><span class="label">🎯 Missed Cross-sell</span><span id="sig-cross" class="value">0</span></div>
+                <div class="status-row"><span class="label">⚠️ Missing Disclosure</span><span id="sig-disc" class="value">0</span></div>
+                <div class="status-row"><span class="label">😤 Frustration</span><span id="sig-frust" class="value">0</span></div>
+                <div class="status-row"><span class="label">💰 Payment Difficulty</span><span id="sig-pay" class="value">0</span></div>
+                <div class="status-row"><span class="label">📞 Callback Need</span><span id="sig-cb" class="value">0</span></div>
+                <div class="status-row"><span class="label">🔇 Noisy Segment</span><span id="sig-noise" class="value">0</span></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/voice.js"></script>
+    <script>
+        const dashboard = new NudgeDashboard();
+        
+        async function testNudge() {
+            const chunk = document.getElementById('test-chunk').value;
+            const speaker = document.getElementById('test-speaker').value;
+            if (!chunk) return;
+            
+            document.getElementById('test-chunk').value = '';
+            
+            try {
+                const resp = await fetch('/api/nudge-analyze', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chunk: chunk,
+                        speaker: speaker,
+                        timestamp: new Date().toLocaleTimeString(),
+                    }),
+                });
+                const data = await resp.json();
+                dashboard.addNudge(data);
+            } catch (e) {
+                console.error('Test nudge error:', e);
+            }
+        }
+        
+        // Keyboard shortcut
+        document.getElementById('test-chunk').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') testNudge();
+        });
+        
+        // Fetch latency metrics periodically
+        async function updateMetrics() {
+            try {
+                const resp = await fetch('/api/latency');
+                const data = await resp.json();
+                if (data.overall) {
+                    document.getElementById('p50-value').textContent = data.overall.p50_ms || '—';
+                    document.getElementById('p95-value').textContent = data.overall.p95_ms || '—';
+                }
+            } catch (e) {}
+        }
+        setInterval(updateMetrics, 5000);
+    </script>
+</body>
+</html>

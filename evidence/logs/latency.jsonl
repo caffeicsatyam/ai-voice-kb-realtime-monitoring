@@ -1,0 +1,307 @@
+{"timestamp": "2026-07-18T14:17:51.956738", "stage": "signal_detection", "duration_ms": 3.85, "metadata": {"chunk_index": 0, "timestamp": "00:00:02"}}
+{"timestamp": "2026-07-18T14:17:51.965156", "stage": "signal_detection", "duration_ms": 0.12, "metadata": {"chunk_index": 1, "timestamp": "00:00:10"}}
+{"timestamp": "2026-07-18T14:17:51.973497", "stage": "signal_detection", "duration_ms": 0.13, "metadata": {"chunk_index": 2, "timestamp": "00:00:18"}}
+{"timestamp": "2026-07-18T14:17:51.984433", "stage": "signal_detection", "duration_ms": 0.21, "metadata": {"chunk_index": 3, "timestamp": "00:00:28"}}
+{"timestamp": "2026-07-18T14:17:51.992732", "stage": "signal_detection", "duration_ms": 0.12, "metadata": {"chunk_index": 4, "timestamp": "00:00:36"}}
+{"timestamp": "2026-07-18T14:17:52.002315", "stage": "signal_detection", "duration_ms": 0.11, "metadata": {"chunk_index": 5, "timestamp": "00:00:45"}}
+{"timestamp": "2026-07-18T14:17:52.012858", "stage": "signal_detection", "duration_ms": 0.12, "metadata": {"chunk_index": 6, "timestamp": "00:00:55"}}
+{"timestamp": "2026-07-18T14:17:52.023372", "stage": "signal_detection", "duration_ms": 0.11, "metadata": {"chunk_index": 7, "timestamp": "00:01:05"}}
+{"timestamp": "2026-07-18T14:17:52.030924", "stage": "signal_detection", "duration_ms": 0.12, "metadata": {"chunk_index": 8, "timestamp": "00:01:12"}}
+{"timestamp": "2026-07-18T14:17:52.043630", "stage": "signal_detection", "duration_ms": 0.11, "metadata": {"chunk_index": 9, "timestamp": "00:01:24"}}
+{"timestamp": "2026-07-18T14:17:52.050178", "stage": "signal_detection", "duration_ms": 0.14, "metadata": {"chunk_index": 10, "timestamp": "00:01:30"}}
+{"timestamp": "2026-07-18T14:18:24.329932", "stage": "signal_detection", "duration_ms": 2.3, "metadata": {"chunk_index": 0, "timestamp": "00:00:02"}}
+{"timestamp": "2026-07-18T14:18:24.338382", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 1, "timestamp": "00:00:10"}}
+{"timestamp": "2026-07-18T14:18:24.346951", "stage": "signal_detection", "duration_ms": 0.12, "metadata": {"chunk_index": 2, "timestamp": "00:00:18"}}
+{"timestamp": "2026-07-18T14:18:24.357443", "stage": "signal_detection", "duration_ms": 0.11, "metadata": {"chunk_index": 3, "timestamp": "00:00:28"}}
+{"timestamp": "2026-07-18T14:18:24.365928", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 4, "timestamp": "00:00:36"}}
+{"timestamp": "2026-07-18T14:18:24.375447", "stage": "signal_detection", "duration_ms": 0.08, "metadata": {"chunk_index": 5, "timestamp": "00:00:45"}}
+{"timestamp": "2026-07-18T14:18:24.385830", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 6, "timestamp": "00:00:55"}}
+{"timestamp": "2026-07-18T14:18:24.396338", "stage": "signal_detection", "duration_ms": 0.07, "metadata": {"chunk_index": 7, "timestamp": "00:01:05"}}
+{"timestamp": "2026-07-18T14:18:24.403889", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 8, "timestamp": "00:01:12"}}
+{"timestamp": "2026-07-18T14:18:24.416466", "stage": "signal_detection", "duration_ms": 0.08, "metadata": {"chunk_index": 9, "timestamp": "00:01:24"}}
+{"timestamp": "2026-07-18T14:18:24.423108", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 10, "timestamp": "00:01:30"}}
+{"timestamp": "2026-07-18T14:18:24.329932", "stage": "signal_detection", "duration_ms": 2.3, "metadata": {"chunk_index": 0, "timestamp": "00:00:02"}}
+{"timestamp": "2026-07-18T14:18:24.338382", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 1, "timestamp": "00:00:10"}}
+{"timestamp": "2026-07-18T14:18:24.346951", "stage": "signal_detection", "duration_ms": 0.12, "metadata": {"chunk_index": 2, "timestamp": "00:00:18"}}
+{"timestamp": "2026-07-18T14:18:24.357443", "stage": "signal_detection", "duration_ms": 0.11, "metadata": {"chunk_index": 3, "timestamp": "00:00:28"}}
+{"timestamp": "2026-07-18T14:18:24.365928", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 4, "timestamp": "00:00:36"}}
+{"timestamp": "2026-07-18T14:18:24.375447", "stage": "signal_detection", "duration_ms": 0.08, "metadata": {"chunk_index": 5, "timestamp": "00:00:45"}}
+{"timestamp": "2026-07-18T14:18:24.385830", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 6, "timestamp": "00:00:55"}}
+{"timestamp": "2026-07-18T14:18:24.396338", "stage": "signal_detection", "duration_ms": 0.07, "metadata": {"chunk_index": 7, "timestamp": "00:01:05"}}
+{"timestamp": "2026-07-18T14:18:24.403889", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 8, "timestamp": "00:01:12"}}
+{"timestamp": "2026-07-18T14:18:24.416466", "stage": "signal_detection", "duration_ms": 0.08, "metadata": {"chunk_index": 9, "timestamp": "00:01:24"}}
+{"timestamp": "2026-07-18T14:18:24.423108", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 10, "timestamp": "00:01:30"}}
+{"timestamp": "2026-07-18T14:18:24.424991", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 0, "timestamp": "00:00:02"}}
+{"timestamp": "2026-07-18T14:18:24.431744", "stage": "signal_detection", "duration_ms": 0.11, "metadata": {"chunk_index": 1, "timestamp": "00:00:08"}}
+{"timestamp": "2026-07-18T14:18:24.431801", "stage": "nudge_emission", "duration_ms": 0.03, "metadata": {"signal_type": "payment_difficulty"}}
+{"timestamp": "2026-07-18T14:18:24.431806", "stage": "end_to_end", "duration_ms": 0.18, "metadata": {"chunk_index": 1, "signal_type": "payment_difficulty"}}
+{"timestamp": "2026-07-18T14:18:24.440282", "stage": "signal_detection", "duration_ms": 0.13, "metadata": {"chunk_index": 2, "timestamp": "00:00:16"}}
+{"timestamp": "2026-07-18T14:18:24.440316", "stage": "nudge_emission", "duration_ms": 0.01, "metadata": {"signal_type": "payment_difficulty"}}
+{"timestamp": "2026-07-18T14:18:24.440321", "stage": "end_to_end", "duration_ms": 0.17, "metadata": {"chunk_index": 2, "signal_type": "payment_difficulty"}}
+{"timestamp": "2026-07-18T14:18:24.454811", "stage": "signal_detection", "duration_ms": 0.1, "metadata": {"chunk_index": 3, "timestamp": "00:00:30"}}
+{"timestamp": "2026-07-18T14:18:24.454861", "stage": "nudge_emission", "duration_ms": 0.03, "metadata": {"signal_type": "missed_cross_sell"}}
+{"timestamp": "2026-07-18T14:18:24.454865", "stage": "end_to_end", "duration_ms": 0.16, "metadata": {"chunk_index": 3, "signal_type": "missed_cross_sell"}}
+{"timestamp": "2026-07-18T14:18:24.465441", "stage": "signal_detection", "duration_ms": 0.13, "metadata": {"chunk_index": 4, "timestamp": "00:00:40"}}
+{"timestamp": "2026-07-18T14:18:24.465487", "stage": "nudge_emission", "duration_ms": 0.03, "metadata": {"signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:18:24.465491", "stage": "end_to_end", "duration_ms": 0.19, "metadata": {"chunk_index": 4, "signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:18:24.478408", "stage": "signal_detection", "duration_ms": 0.19, "metadata": {"chunk_index": 5, "timestamp": "00:00:52"}}
+{"timestamp": "2026-07-18T14:18:24.478459", "stage": "nudge_emission", "duration_ms": 0.03, "metadata": {"signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:18:24.478465", "stage": "end_to_end", "duration_ms": 0.26, "metadata": {"chunk_index": 5, "signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:18:24.487119", "stage": "signal_detection", "duration_ms": 0.11, "metadata": {"chunk_index": 6, "timestamp": "00:01:00"}}
+{"timestamp": "2026-07-18T14:18:24.487146", "stage": "nudge_emission", "duration_ms": 0.01, "metadata": {"signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:18:24.487150", "stage": "end_to_end", "duration_ms": 0.15, "metadata": {"chunk_index": 6, "signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:18:24.499402", "stage": "signal_detection", "duration_ms": 0.08, "metadata": {"chunk_index": 7, "timestamp": "00:01:12"}}
+{"timestamp": "2026-07-18T14:18:24.507987", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 8, "timestamp": "00:01:20"}}
+{"timestamp": "2026-07-18T14:18:24.329932", "stage": "signal_detection", "duration_ms": 2.3, "metadata": {"chunk_index": 0, "timestamp": "00:00:02"}}
+{"timestamp": "2026-07-18T14:18:24.338382", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 1, "timestamp": "00:00:10"}}
+{"timestamp": "2026-07-18T14:18:24.346951", "stage": "signal_detection", "duration_ms": 0.12, "metadata": {"chunk_index": 2, "timestamp": "00:00:18"}}
+{"timestamp": "2026-07-18T14:18:24.357443", "stage": "signal_detection", "duration_ms": 0.11, "metadata": {"chunk_index": 3, "timestamp": "00:00:28"}}
+{"timestamp": "2026-07-18T14:18:24.365928", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 4, "timestamp": "00:00:36"}}
+{"timestamp": "2026-07-18T14:18:24.375447", "stage": "signal_detection", "duration_ms": 0.08, "metadata": {"chunk_index": 5, "timestamp": "00:00:45"}}
+{"timestamp": "2026-07-18T14:18:24.385830", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 6, "timestamp": "00:00:55"}}
+{"timestamp": "2026-07-18T14:18:24.396338", "stage": "signal_detection", "duration_ms": 0.07, "metadata": {"chunk_index": 7, "timestamp": "00:01:05"}}
+{"timestamp": "2026-07-18T14:18:24.403889", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 8, "timestamp": "00:01:12"}}
+{"timestamp": "2026-07-18T14:18:24.416466", "stage": "signal_detection", "duration_ms": 0.08, "metadata": {"chunk_index": 9, "timestamp": "00:01:24"}}
+{"timestamp": "2026-07-18T14:18:24.423108", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 10, "timestamp": "00:01:30"}}
+{"timestamp": "2026-07-18T14:18:24.424991", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 0, "timestamp": "00:00:02"}}
+{"timestamp": "2026-07-18T14:18:24.431744", "stage": "signal_detection", "duration_ms": 0.11, "metadata": {"chunk_index": 1, "timestamp": "00:00:08"}}
+{"timestamp": "2026-07-18T14:18:24.431801", "stage": "nudge_emission", "duration_ms": 0.03, "metadata": {"signal_type": "payment_difficulty"}}
+{"timestamp": "2026-07-18T14:18:24.431806", "stage": "end_to_end", "duration_ms": 0.18, "metadata": {"chunk_index": 1, "signal_type": "payment_difficulty"}}
+{"timestamp": "2026-07-18T14:18:24.440282", "stage": "signal_detection", "duration_ms": 0.13, "metadata": {"chunk_index": 2, "timestamp": "00:00:16"}}
+{"timestamp": "2026-07-18T14:18:24.440316", "stage": "nudge_emission", "duration_ms": 0.01, "metadata": {"signal_type": "payment_difficulty"}}
+{"timestamp": "2026-07-18T14:18:24.440321", "stage": "end_to_end", "duration_ms": 0.17, "metadata": {"chunk_index": 2, "signal_type": "payment_difficulty"}}
+{"timestamp": "2026-07-18T14:18:24.454811", "stage": "signal_detection", "duration_ms": 0.1, "metadata": {"chunk_index": 3, "timestamp": "00:00:30"}}
+{"timestamp": "2026-07-18T14:18:24.454861", "stage": "nudge_emission", "duration_ms": 0.03, "metadata": {"signal_type": "missed_cross_sell"}}
+{"timestamp": "2026-07-18T14:18:24.454865", "stage": "end_to_end", "duration_ms": 0.16, "metadata": {"chunk_index": 3, "signal_type": "missed_cross_sell"}}
+{"timestamp": "2026-07-18T14:18:24.465441", "stage": "signal_detection", "duration_ms": 0.13, "metadata": {"chunk_index": 4, "timestamp": "00:00:40"}}
+{"timestamp": "2026-07-18T14:18:24.465487", "stage": "nudge_emission", "duration_ms": 0.03, "metadata": {"signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:18:24.465491", "stage": "end_to_end", "duration_ms": 0.19, "metadata": {"chunk_index": 4, "signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:18:24.478408", "stage": "signal_detection", "duration_ms": 0.19, "metadata": {"chunk_index": 5, "timestamp": "00:00:52"}}
+{"timestamp": "2026-07-18T14:18:24.478459", "stage": "nudge_emission", "duration_ms": 0.03, "metadata": {"signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:18:24.478465", "stage": "end_to_end", "duration_ms": 0.26, "metadata": {"chunk_index": 5, "signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:18:24.487119", "stage": "signal_detection", "duration_ms": 0.11, "metadata": {"chunk_index": 6, "timestamp": "00:01:00"}}
+{"timestamp": "2026-07-18T14:18:24.487146", "stage": "nudge_emission", "duration_ms": 0.01, "metadata": {"signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:18:24.487150", "stage": "end_to_end", "duration_ms": 0.15, "metadata": {"chunk_index": 6, "signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:18:24.499402", "stage": "signal_detection", "duration_ms": 0.08, "metadata": {"chunk_index": 7, "timestamp": "00:01:12"}}
+{"timestamp": "2026-07-18T14:18:24.507987", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 8, "timestamp": "00:01:20"}}
+{"timestamp": "2026-07-18T14:18:24.511226", "stage": "signal_detection", "duration_ms": 0.15, "metadata": {"chunk_index": 0, "timestamp": "00:00:02"}}
+{"timestamp": "2026-07-18T14:18:24.517532", "stage": "signal_detection", "duration_ms": 0.08, "metadata": {"chunk_index": 1, "timestamp": "00:00:08"}}
+{"timestamp": "2026-07-18T14:18:24.528030", "stage": "signal_detection", "duration_ms": 0.08, "metadata": {"chunk_index": 2, "timestamp": "00:00:18"}}
+{"timestamp": "2026-07-18T14:18:24.534681", "stage": "signal_detection", "duration_ms": 0.1, "metadata": {"chunk_index": 3, "timestamp": "00:00:24"}}
+{"timestamp": "2026-07-18T14:18:24.534718", "stage": "nudge_emission", "duration_ms": 0.02, "metadata": {"signal_type": "frustration"}}
+{"timestamp": "2026-07-18T14:18:24.534722", "stage": "end_to_end", "duration_ms": 0.15, "metadata": {"chunk_index": 3, "signal_type": "frustration"}}
+{"timestamp": "2026-07-18T14:18:24.543206", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 4, "timestamp": "00:00:32"}}
+{"timestamp": "2026-07-18T14:18:24.552082", "stage": "signal_detection", "duration_ms": 0.25, "metadata": {"chunk_index": 5, "timestamp": "00:00:40"}}
+{"timestamp": "2026-07-18T14:18:24.565288", "stage": "signal_detection", "duration_ms": 0.4, "metadata": {"chunk_index": 6, "timestamp": "00:00:52"}}
+{"timestamp": "2026-07-18T14:18:24.576066", "stage": "signal_detection", "duration_ms": 0.16, "metadata": {"chunk_index": 7, "timestamp": "00:01:02"}}
+{"timestamp": "2026-07-18T14:18:24.576110", "stage": "nudge_emission", "duration_ms": 0.02, "metadata": {"signal_type": "frustration"}}
+{"timestamp": "2026-07-18T14:18:24.576117", "stage": "end_to_end", "duration_ms": 0.22, "metadata": {"chunk_index": 7, "signal_type": "frustration"}}
+{"timestamp": "2026-07-18T14:18:24.584756", "stage": "signal_detection", "duration_ms": 0.18, "metadata": {"chunk_index": 8, "timestamp": "00:01:10"}}
+{"timestamp": "2026-07-18T14:18:24.329932", "stage": "signal_detection", "duration_ms": 2.3, "metadata": {"chunk_index": 0, "timestamp": "00:00:02"}}
+{"timestamp": "2026-07-18T14:18:24.338382", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 1, "timestamp": "00:00:10"}}
+{"timestamp": "2026-07-18T14:18:24.346951", "stage": "signal_detection", "duration_ms": 0.12, "metadata": {"chunk_index": 2, "timestamp": "00:00:18"}}
+{"timestamp": "2026-07-18T14:18:24.357443", "stage": "signal_detection", "duration_ms": 0.11, "metadata": {"chunk_index": 3, "timestamp": "00:00:28"}}
+{"timestamp": "2026-07-18T14:18:24.365928", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 4, "timestamp": "00:00:36"}}
+{"timestamp": "2026-07-18T14:18:24.375447", "stage": "signal_detection", "duration_ms": 0.08, "metadata": {"chunk_index": 5, "timestamp": "00:00:45"}}
+{"timestamp": "2026-07-18T14:18:24.385830", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 6, "timestamp": "00:00:55"}}
+{"timestamp": "2026-07-18T14:18:24.396338", "stage": "signal_detection", "duration_ms": 0.07, "metadata": {"chunk_index": 7, "timestamp": "00:01:05"}}
+{"timestamp": "2026-07-18T14:18:24.403889", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 8, "timestamp": "00:01:12"}}
+{"timestamp": "2026-07-18T14:18:24.416466", "stage": "signal_detection", "duration_ms": 0.08, "metadata": {"chunk_index": 9, "timestamp": "00:01:24"}}
+{"timestamp": "2026-07-18T14:18:24.423108", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 10, "timestamp": "00:01:30"}}
+{"timestamp": "2026-07-18T14:18:24.424991", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 0, "timestamp": "00:00:02"}}
+{"timestamp": "2026-07-18T14:18:24.431744", "stage": "signal_detection", "duration_ms": 0.11, "metadata": {"chunk_index": 1, "timestamp": "00:00:08"}}
+{"timestamp": "2026-07-18T14:18:24.431801", "stage": "nudge_emission", "duration_ms": 0.03, "metadata": {"signal_type": "payment_difficulty"}}
+{"timestamp": "2026-07-18T14:18:24.431806", "stage": "end_to_end", "duration_ms": 0.18, "metadata": {"chunk_index": 1, "signal_type": "payment_difficulty"}}
+{"timestamp": "2026-07-18T14:18:24.440282", "stage": "signal_detection", "duration_ms": 0.13, "metadata": {"chunk_index": 2, "timestamp": "00:00:16"}}
+{"timestamp": "2026-07-18T14:18:24.440316", "stage": "nudge_emission", "duration_ms": 0.01, "metadata": {"signal_type": "payment_difficulty"}}
+{"timestamp": "2026-07-18T14:18:24.440321", "stage": "end_to_end", "duration_ms": 0.17, "metadata": {"chunk_index": 2, "signal_type": "payment_difficulty"}}
+{"timestamp": "2026-07-18T14:18:24.454811", "stage": "signal_detection", "duration_ms": 0.1, "metadata": {"chunk_index": 3, "timestamp": "00:00:30"}}
+{"timestamp": "2026-07-18T14:18:24.454861", "stage": "nudge_emission", "duration_ms": 0.03, "metadata": {"signal_type": "missed_cross_sell"}}
+{"timestamp": "2026-07-18T14:18:24.454865", "stage": "end_to_end", "duration_ms": 0.16, "metadata": {"chunk_index": 3, "signal_type": "missed_cross_sell"}}
+{"timestamp": "2026-07-18T14:18:24.465441", "stage": "signal_detection", "duration_ms": 0.13, "metadata": {"chunk_index": 4, "timestamp": "00:00:40"}}
+{"timestamp": "2026-07-18T14:18:24.465487", "stage": "nudge_emission", "duration_ms": 0.03, "metadata": {"signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:18:24.465491", "stage": "end_to_end", "duration_ms": 0.19, "metadata": {"chunk_index": 4, "signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:18:24.478408", "stage": "signal_detection", "duration_ms": 0.19, "metadata": {"chunk_index": 5, "timestamp": "00:00:52"}}
+{"timestamp": "2026-07-18T14:18:24.478459", "stage": "nudge_emission", "duration_ms": 0.03, "metadata": {"signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:18:24.478465", "stage": "end_to_end", "duration_ms": 0.26, "metadata": {"chunk_index": 5, "signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:18:24.487119", "stage": "signal_detection", "duration_ms": 0.11, "metadata": {"chunk_index": 6, "timestamp": "00:01:00"}}
+{"timestamp": "2026-07-18T14:18:24.487146", "stage": "nudge_emission", "duration_ms": 0.01, "metadata": {"signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:18:24.487150", "stage": "end_to_end", "duration_ms": 0.15, "metadata": {"chunk_index": 6, "signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:18:24.499402", "stage": "signal_detection", "duration_ms": 0.08, "metadata": {"chunk_index": 7, "timestamp": "00:01:12"}}
+{"timestamp": "2026-07-18T14:18:24.507987", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 8, "timestamp": "00:01:20"}}
+{"timestamp": "2026-07-18T14:18:24.511226", "stage": "signal_detection", "duration_ms": 0.15, "metadata": {"chunk_index": 0, "timestamp": "00:00:02"}}
+{"timestamp": "2026-07-18T14:18:24.517532", "stage": "signal_detection", "duration_ms": 0.08, "metadata": {"chunk_index": 1, "timestamp": "00:00:08"}}
+{"timestamp": "2026-07-18T14:18:24.528030", "stage": "signal_detection", "duration_ms": 0.08, "metadata": {"chunk_index": 2, "timestamp": "00:00:18"}}
+{"timestamp": "2026-07-18T14:18:24.534681", "stage": "signal_detection", "duration_ms": 0.1, "metadata": {"chunk_index": 3, "timestamp": "00:00:24"}}
+{"timestamp": "2026-07-18T14:18:24.534718", "stage": "nudge_emission", "duration_ms": 0.02, "metadata": {"signal_type": "frustration"}}
+{"timestamp": "2026-07-18T14:18:24.534722", "stage": "end_to_end", "duration_ms": 0.15, "metadata": {"chunk_index": 3, "signal_type": "frustration"}}
+{"timestamp": "2026-07-18T14:18:24.543206", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 4, "timestamp": "00:00:32"}}
+{"timestamp": "2026-07-18T14:18:24.552082", "stage": "signal_detection", "duration_ms": 0.25, "metadata": {"chunk_index": 5, "timestamp": "00:00:40"}}
+{"timestamp": "2026-07-18T14:18:24.565288", "stage": "signal_detection", "duration_ms": 0.4, "metadata": {"chunk_index": 6, "timestamp": "00:00:52"}}
+{"timestamp": "2026-07-18T14:18:24.576066", "stage": "signal_detection", "duration_ms": 0.16, "metadata": {"chunk_index": 7, "timestamp": "00:01:02"}}
+{"timestamp": "2026-07-18T14:18:24.576110", "stage": "nudge_emission", "duration_ms": 0.02, "metadata": {"signal_type": "frustration"}}
+{"timestamp": "2026-07-18T14:18:24.576117", "stage": "end_to_end", "duration_ms": 0.22, "metadata": {"chunk_index": 7, "signal_type": "frustration"}}
+{"timestamp": "2026-07-18T14:18:24.584756", "stage": "signal_detection", "duration_ms": 0.18, "metadata": {"chunk_index": 8, "timestamp": "00:01:10"}}
+{"timestamp": "2026-07-18T14:18:24.595793", "stage": "signal_detection", "duration_ms": 0.41, "metadata": {"chunk_index": 0, "timestamp": "00:00:02"}}
+{"timestamp": "2026-07-18T14:18:24.600934", "stage": "signal_detection", "duration_ms": 0.53, "metadata": {"chunk_index": 1, "timestamp": "00:00:06"}}
+{"timestamp": "2026-07-18T14:18:24.601094", "stage": "nudge_emission", "duration_ms": 0.07, "metadata": {"signal_type": "noisy_segment"}}
+{"timestamp": "2026-07-18T14:18:24.601121", "stage": "end_to_end", "duration_ms": 0.75, "metadata": {"chunk_index": 1, "signal_type": "noisy_segment"}}
+{"timestamp": "2026-07-18T14:18:24.610027", "stage": "signal_detection", "duration_ms": 0.45, "metadata": {"chunk_index": 2, "timestamp": "00:00:14"}}
+{"timestamp": "2026-07-18T14:18:24.617270", "stage": "signal_detection", "duration_ms": 0.52, "metadata": {"chunk_index": 3, "timestamp": "00:00:20"}}
+{"timestamp": "2026-07-18T14:18:24.617538", "stage": "nudge_emission", "duration_ms": 0.15, "metadata": {"signal_type": "noisy_segment"}}
+{"timestamp": "2026-07-18T14:18:24.617576", "stage": "end_to_end", "duration_ms": 0.86, "metadata": {"chunk_index": 3, "signal_type": "noisy_segment"}}
+{"timestamp": "2026-07-18T14:18:24.626256", "stage": "signal_detection", "duration_ms": 0.1, "metadata": {"chunk_index": 4, "timestamp": "00:00:28"}}
+{"timestamp": "2026-07-18T14:18:24.635189", "stage": "signal_detection", "duration_ms": 0.17, "metadata": {"chunk_index": 5, "timestamp": "00:00:36"}}
+{"timestamp": "2026-07-18T14:18:24.635279", "stage": "nudge_emission", "duration_ms": 0.05, "metadata": {"signal_type": "callback_need"}}
+{"timestamp": "2026-07-18T14:18:24.635289", "stage": "end_to_end", "duration_ms": 0.29, "metadata": {"chunk_index": 5, "signal_type": "callback_need"}}
+{"timestamp": "2026-07-18T14:18:24.635348", "stage": "nudge_emission", "duration_ms": 0.02, "metadata": {"signal_type": "noisy_segment"}}
+{"timestamp": "2026-07-18T14:18:24.635355", "stage": "end_to_end", "duration_ms": 0.37, "metadata": {"chunk_index": 5, "signal_type": "noisy_segment"}}
+{"timestamp": "2026-07-18T14:18:24.642224", "stage": "signal_detection", "duration_ms": 0.13, "metadata": {"chunk_index": 6, "timestamp": "00:00:42"}}
+{"timestamp": "2026-07-18T14:28:36.202143", "stage": "signal_detection", "duration_ms": 2.58, "metadata": {"chunk_index": 0, "timestamp": "00:00:02"}}
+{"timestamp": "2026-07-18T14:28:36.217234", "stage": "signal_detection", "duration_ms": 0.12, "metadata": {"chunk_index": 1, "timestamp": "00:00:10"}}
+{"timestamp": "2026-07-18T14:28:36.226303", "stage": "signal_detection", "duration_ms": 0.19, "metadata": {"chunk_index": 2, "timestamp": "00:00:18"}}
+{"timestamp": "2026-07-18T14:28:36.237777", "stage": "signal_detection", "duration_ms": 1.02, "metadata": {"chunk_index": 3, "timestamp": "00:00:28"}}
+{"timestamp": "2026-07-18T14:28:36.246465", "stage": "signal_detection", "duration_ms": 0.16, "metadata": {"chunk_index": 4, "timestamp": "00:00:36"}}
+{"timestamp": "2026-07-18T14:28:36.256332", "stage": "signal_detection", "duration_ms": 0.19, "metadata": {"chunk_index": 5, "timestamp": "00:00:45"}}
+{"timestamp": "2026-07-18T14:28:36.266817", "stage": "signal_detection", "duration_ms": 0.15, "metadata": {"chunk_index": 6, "timestamp": "00:00:55"}}
+{"timestamp": "2026-07-18T14:28:36.277655", "stage": "signal_detection", "duration_ms": 0.1, "metadata": {"chunk_index": 7, "timestamp": "00:01:05"}}
+{"timestamp": "2026-07-18T14:28:36.290227", "stage": "signal_detection", "duration_ms": 0.63, "metadata": {"chunk_index": 8, "timestamp": "00:01:12"}}
+{"timestamp": "2026-07-18T14:28:36.302847", "stage": "signal_detection", "duration_ms": 0.14, "metadata": {"chunk_index": 9, "timestamp": "00:01:24"}}
+{"timestamp": "2026-07-18T14:28:36.310020", "stage": "signal_detection", "duration_ms": 0.47, "metadata": {"chunk_index": 10, "timestamp": "00:01:30"}}
+{"timestamp": "2026-07-18T14:28:36.202143", "stage": "signal_detection", "duration_ms": 2.58, "metadata": {"chunk_index": 0, "timestamp": "00:00:02"}}
+{"timestamp": "2026-07-18T14:28:36.217234", "stage": "signal_detection", "duration_ms": 0.12, "metadata": {"chunk_index": 1, "timestamp": "00:00:10"}}
+{"timestamp": "2026-07-18T14:28:36.226303", "stage": "signal_detection", "duration_ms": 0.19, "metadata": {"chunk_index": 2, "timestamp": "00:00:18"}}
+{"timestamp": "2026-07-18T14:28:36.237777", "stage": "signal_detection", "duration_ms": 1.02, "metadata": {"chunk_index": 3, "timestamp": "00:00:28"}}
+{"timestamp": "2026-07-18T14:28:36.246465", "stage": "signal_detection", "duration_ms": 0.16, "metadata": {"chunk_index": 4, "timestamp": "00:00:36"}}
+{"timestamp": "2026-07-18T14:28:36.256332", "stage": "signal_detection", "duration_ms": 0.19, "metadata": {"chunk_index": 5, "timestamp": "00:00:45"}}
+{"timestamp": "2026-07-18T14:28:36.266817", "stage": "signal_detection", "duration_ms": 0.15, "metadata": {"chunk_index": 6, "timestamp": "00:00:55"}}
+{"timestamp": "2026-07-18T14:28:36.277655", "stage": "signal_detection", "duration_ms": 0.1, "metadata": {"chunk_index": 7, "timestamp": "00:01:05"}}
+{"timestamp": "2026-07-18T14:28:36.290227", "stage": "signal_detection", "duration_ms": 0.63, "metadata": {"chunk_index": 8, "timestamp": "00:01:12"}}
+{"timestamp": "2026-07-18T14:28:36.302847", "stage": "signal_detection", "duration_ms": 0.14, "metadata": {"chunk_index": 9, "timestamp": "00:01:24"}}
+{"timestamp": "2026-07-18T14:28:36.310020", "stage": "signal_detection", "duration_ms": 0.47, "metadata": {"chunk_index": 10, "timestamp": "00:01:30"}}
+{"timestamp": "2026-07-18T14:28:36.325136", "stage": "signal_detection", "duration_ms": 0.15, "metadata": {"chunk_index": 0, "timestamp": "00:00:02"}}
+{"timestamp": "2026-07-18T14:28:36.332315", "stage": "signal_detection", "duration_ms": 0.34, "metadata": {"chunk_index": 1, "timestamp": "00:00:08"}}
+{"timestamp": "2026-07-18T14:28:36.332561", "stage": "nudge_emission", "duration_ms": 0.14, "metadata": {"signal_type": "payment_difficulty"}}
+{"timestamp": "2026-07-18T14:28:36.332592", "stage": "end_to_end", "duration_ms": 0.6, "metadata": {"chunk_index": 1, "signal_type": "payment_difficulty"}}
+{"timestamp": "2026-07-18T14:28:36.342272", "stage": "signal_detection", "duration_ms": 0.18, "metadata": {"chunk_index": 2, "timestamp": "00:00:16"}}
+{"timestamp": "2026-07-18T14:28:36.342328", "stage": "nudge_emission", "duration_ms": 0.02, "metadata": {"signal_type": "payment_difficulty"}}
+{"timestamp": "2026-07-18T14:28:36.342333", "stage": "end_to_end", "duration_ms": 0.3, "metadata": {"chunk_index": 2, "signal_type": "payment_difficulty"}}
+{"timestamp": "2026-07-18T14:28:36.358042", "stage": "signal_detection", "duration_ms": 0.11, "metadata": {"chunk_index": 3, "timestamp": "00:00:30"}}
+{"timestamp": "2026-07-18T14:28:36.358092", "stage": "nudge_emission", "duration_ms": 0.03, "metadata": {"signal_type": "missed_cross_sell"}}
+{"timestamp": "2026-07-18T14:28:36.358096", "stage": "end_to_end", "duration_ms": 0.17, "metadata": {"chunk_index": 3, "signal_type": "missed_cross_sell"}}
+{"timestamp": "2026-07-18T14:28:36.369021", "stage": "signal_detection", "duration_ms": 0.13, "metadata": {"chunk_index": 4, "timestamp": "00:00:40"}}
+{"timestamp": "2026-07-18T14:28:36.369064", "stage": "nudge_emission", "duration_ms": 0.02, "metadata": {"signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:28:36.369068", "stage": "end_to_end", "duration_ms": 0.18, "metadata": {"chunk_index": 4, "signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:28:36.381904", "stage": "signal_detection", "duration_ms": 0.13, "metadata": {"chunk_index": 5, "timestamp": "00:00:52"}}
+{"timestamp": "2026-07-18T14:28:36.381935", "stage": "nudge_emission", "duration_ms": 0.01, "metadata": {"signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:28:36.381939", "stage": "end_to_end", "duration_ms": 0.17, "metadata": {"chunk_index": 5, "signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:28:36.390639", "stage": "signal_detection", "duration_ms": 0.18, "metadata": {"chunk_index": 6, "timestamp": "00:01:00"}}
+{"timestamp": "2026-07-18T14:28:36.390743", "stage": "nudge_emission", "duration_ms": 0.04, "metadata": {"signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:28:36.390766", "stage": "end_to_end", "duration_ms": 0.32, "metadata": {"chunk_index": 6, "signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:28:36.403568", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 7, "timestamp": "00:01:12"}}
+{"timestamp": "2026-07-18T14:28:36.412608", "stage": "signal_detection", "duration_ms": 0.12, "metadata": {"chunk_index": 8, "timestamp": "00:01:20"}}
+{"timestamp": "2026-07-18T14:28:36.202143", "stage": "signal_detection", "duration_ms": 2.58, "metadata": {"chunk_index": 0, "timestamp": "00:00:02"}}
+{"timestamp": "2026-07-18T14:28:36.217234", "stage": "signal_detection", "duration_ms": 0.12, "metadata": {"chunk_index": 1, "timestamp": "00:00:10"}}
+{"timestamp": "2026-07-18T14:28:36.226303", "stage": "signal_detection", "duration_ms": 0.19, "metadata": {"chunk_index": 2, "timestamp": "00:00:18"}}
+{"timestamp": "2026-07-18T14:28:36.237777", "stage": "signal_detection", "duration_ms": 1.02, "metadata": {"chunk_index": 3, "timestamp": "00:00:28"}}
+{"timestamp": "2026-07-18T14:28:36.246465", "stage": "signal_detection", "duration_ms": 0.16, "metadata": {"chunk_index": 4, "timestamp": "00:00:36"}}
+{"timestamp": "2026-07-18T14:28:36.256332", "stage": "signal_detection", "duration_ms": 0.19, "metadata": {"chunk_index": 5, "timestamp": "00:00:45"}}
+{"timestamp": "2026-07-18T14:28:36.266817", "stage": "signal_detection", "duration_ms": 0.15, "metadata": {"chunk_index": 6, "timestamp": "00:00:55"}}
+{"timestamp": "2026-07-18T14:28:36.277655", "stage": "signal_detection", "duration_ms": 0.1, "metadata": {"chunk_index": 7, "timestamp": "00:01:05"}}
+{"timestamp": "2026-07-18T14:28:36.290227", "stage": "signal_detection", "duration_ms": 0.63, "metadata": {"chunk_index": 8, "timestamp": "00:01:12"}}
+{"timestamp": "2026-07-18T14:28:36.302847", "stage": "signal_detection", "duration_ms": 0.14, "metadata": {"chunk_index": 9, "timestamp": "00:01:24"}}
+{"timestamp": "2026-07-18T14:28:36.310020", "stage": "signal_detection", "duration_ms": 0.47, "metadata": {"chunk_index": 10, "timestamp": "00:01:30"}}
+{"timestamp": "2026-07-18T14:28:36.325136", "stage": "signal_detection", "duration_ms": 0.15, "metadata": {"chunk_index": 0, "timestamp": "00:00:02"}}
+{"timestamp": "2026-07-18T14:28:36.332315", "stage": "signal_detection", "duration_ms": 0.34, "metadata": {"chunk_index": 1, "timestamp": "00:00:08"}}
+{"timestamp": "2026-07-18T14:28:36.332561", "stage": "nudge_emission", "duration_ms": 0.14, "metadata": {"signal_type": "payment_difficulty"}}
+{"timestamp": "2026-07-18T14:28:36.332592", "stage": "end_to_end", "duration_ms": 0.6, "metadata": {"chunk_index": 1, "signal_type": "payment_difficulty"}}
+{"timestamp": "2026-07-18T14:28:36.342272", "stage": "signal_detection", "duration_ms": 0.18, "metadata": {"chunk_index": 2, "timestamp": "00:00:16"}}
+{"timestamp": "2026-07-18T14:28:36.342328", "stage": "nudge_emission", "duration_ms": 0.02, "metadata": {"signal_type": "payment_difficulty"}}
+{"timestamp": "2026-07-18T14:28:36.342333", "stage": "end_to_end", "duration_ms": 0.3, "metadata": {"chunk_index": 2, "signal_type": "payment_difficulty"}}
+{"timestamp": "2026-07-18T14:28:36.358042", "stage": "signal_detection", "duration_ms": 0.11, "metadata": {"chunk_index": 3, "timestamp": "00:00:30"}}
+{"timestamp": "2026-07-18T14:28:36.358092", "stage": "nudge_emission", "duration_ms": 0.03, "metadata": {"signal_type": "missed_cross_sell"}}
+{"timestamp": "2026-07-18T14:28:36.358096", "stage": "end_to_end", "duration_ms": 0.17, "metadata": {"chunk_index": 3, "signal_type": "missed_cross_sell"}}
+{"timestamp": "2026-07-18T14:28:36.369021", "stage": "signal_detection", "duration_ms": 0.13, "metadata": {"chunk_index": 4, "timestamp": "00:00:40"}}
+{"timestamp": "2026-07-18T14:28:36.369064", "stage": "nudge_emission", "duration_ms": 0.02, "metadata": {"signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:28:36.369068", "stage": "end_to_end", "duration_ms": 0.18, "metadata": {"chunk_index": 4, "signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:28:36.381904", "stage": "signal_detection", "duration_ms": 0.13, "metadata": {"chunk_index": 5, "timestamp": "00:00:52"}}
+{"timestamp": "2026-07-18T14:28:36.381935", "stage": "nudge_emission", "duration_ms": 0.01, "metadata": {"signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:28:36.381939", "stage": "end_to_end", "duration_ms": 0.17, "metadata": {"chunk_index": 5, "signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:28:36.390639", "stage": "signal_detection", "duration_ms": 0.18, "metadata": {"chunk_index": 6, "timestamp": "00:01:00"}}
+{"timestamp": "2026-07-18T14:28:36.390743", "stage": "nudge_emission", "duration_ms": 0.04, "metadata": {"signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:28:36.390766", "stage": "end_to_end", "duration_ms": 0.32, "metadata": {"chunk_index": 6, "signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:28:36.403568", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 7, "timestamp": "00:01:12"}}
+{"timestamp": "2026-07-18T14:28:36.412608", "stage": "signal_detection", "duration_ms": 0.12, "metadata": {"chunk_index": 8, "timestamp": "00:01:20"}}
+{"timestamp": "2026-07-18T14:28:36.416416", "stage": "signal_detection", "duration_ms": 0.06, "metadata": {"chunk_index": 0, "timestamp": "00:00:02"}}
+{"timestamp": "2026-07-18T14:28:36.422748", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 1, "timestamp": "00:00:08"}}
+{"timestamp": "2026-07-18T14:28:36.433428", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 2, "timestamp": "00:00:18"}}
+{"timestamp": "2026-07-18T14:28:36.440176", "stage": "signal_detection", "duration_ms": 0.11, "metadata": {"chunk_index": 3, "timestamp": "00:00:24"}}
+{"timestamp": "2026-07-18T14:28:36.440215", "stage": "nudge_emission", "duration_ms": 0.02, "metadata": {"signal_type": "frustration"}}
+{"timestamp": "2026-07-18T14:28:36.440218", "stage": "end_to_end", "duration_ms": 0.16, "metadata": {"chunk_index": 3, "signal_type": "frustration"}}
+{"timestamp": "2026-07-18T14:28:36.448787", "stage": "signal_detection", "duration_ms": 0.1, "metadata": {"chunk_index": 4, "timestamp": "00:00:32"}}
+{"timestamp": "2026-07-18T14:28:36.457668", "stage": "signal_detection", "duration_ms": 0.11, "metadata": {"chunk_index": 5, "timestamp": "00:00:40"}}
+{"timestamp": "2026-07-18T14:28:36.470067", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 6, "timestamp": "00:00:52"}}
+{"timestamp": "2026-07-18T14:28:36.480466", "stage": "signal_detection", "duration_ms": 0.11, "metadata": {"chunk_index": 7, "timestamp": "00:01:02"}}
+{"timestamp": "2026-07-18T14:28:36.480495", "stage": "nudge_emission", "duration_ms": 0.01, "metadata": {"signal_type": "frustration"}}
+{"timestamp": "2026-07-18T14:28:36.480499", "stage": "end_to_end", "duration_ms": 0.15, "metadata": {"chunk_index": 7, "signal_type": "frustration"}}
+{"timestamp": "2026-07-18T14:28:36.489372", "stage": "signal_detection", "duration_ms": 0.24, "metadata": {"chunk_index": 8, "timestamp": "00:01:10"}}
+{"timestamp": "2026-07-18T14:28:36.202143", "stage": "signal_detection", "duration_ms": 2.58, "metadata": {"chunk_index": 0, "timestamp": "00:00:02"}}
+{"timestamp": "2026-07-18T14:28:36.217234", "stage": "signal_detection", "duration_ms": 0.12, "metadata": {"chunk_index": 1, "timestamp": "00:00:10"}}
+{"timestamp": "2026-07-18T14:28:36.226303", "stage": "signal_detection", "duration_ms": 0.19, "metadata": {"chunk_index": 2, "timestamp": "00:00:18"}}
+{"timestamp": "2026-07-18T14:28:36.237777", "stage": "signal_detection", "duration_ms": 1.02, "metadata": {"chunk_index": 3, "timestamp": "00:00:28"}}
+{"timestamp": "2026-07-18T14:28:36.246465", "stage": "signal_detection", "duration_ms": 0.16, "metadata": {"chunk_index": 4, "timestamp": "00:00:36"}}
+{"timestamp": "2026-07-18T14:28:36.256332", "stage": "signal_detection", "duration_ms": 0.19, "metadata": {"chunk_index": 5, "timestamp": "00:00:45"}}
+{"timestamp": "2026-07-18T14:28:36.266817", "stage": "signal_detection", "duration_ms": 0.15, "metadata": {"chunk_index": 6, "timestamp": "00:00:55"}}
+{"timestamp": "2026-07-18T14:28:36.277655", "stage": "signal_detection", "duration_ms": 0.1, "metadata": {"chunk_index": 7, "timestamp": "00:01:05"}}
+{"timestamp": "2026-07-18T14:28:36.290227", "stage": "signal_detection", "duration_ms": 0.63, "metadata": {"chunk_index": 8, "timestamp": "00:01:12"}}
+{"timestamp": "2026-07-18T14:28:36.302847", "stage": "signal_detection", "duration_ms": 0.14, "metadata": {"chunk_index": 9, "timestamp": "00:01:24"}}
+{"timestamp": "2026-07-18T14:28:36.310020", "stage": "signal_detection", "duration_ms": 0.47, "metadata": {"chunk_index": 10, "timestamp": "00:01:30"}}
+{"timestamp": "2026-07-18T14:28:36.325136", "stage": "signal_detection", "duration_ms": 0.15, "metadata": {"chunk_index": 0, "timestamp": "00:00:02"}}
+{"timestamp": "2026-07-18T14:28:36.332315", "stage": "signal_detection", "duration_ms": 0.34, "metadata": {"chunk_index": 1, "timestamp": "00:00:08"}}
+{"timestamp": "2026-07-18T14:28:36.332561", "stage": "nudge_emission", "duration_ms": 0.14, "metadata": {"signal_type": "payment_difficulty"}}
+{"timestamp": "2026-07-18T14:28:36.332592", "stage": "end_to_end", "duration_ms": 0.6, "metadata": {"chunk_index": 1, "signal_type": "payment_difficulty"}}
+{"timestamp": "2026-07-18T14:28:36.342272", "stage": "signal_detection", "duration_ms": 0.18, "metadata": {"chunk_index": 2, "timestamp": "00:00:16"}}
+{"timestamp": "2026-07-18T14:28:36.342328", "stage": "nudge_emission", "duration_ms": 0.02, "metadata": {"signal_type": "payment_difficulty"}}
+{"timestamp": "2026-07-18T14:28:36.342333", "stage": "end_to_end", "duration_ms": 0.3, "metadata": {"chunk_index": 2, "signal_type": "payment_difficulty"}}
+{"timestamp": "2026-07-18T14:28:36.358042", "stage": "signal_detection", "duration_ms": 0.11, "metadata": {"chunk_index": 3, "timestamp": "00:00:30"}}
+{"timestamp": "2026-07-18T14:28:36.358092", "stage": "nudge_emission", "duration_ms": 0.03, "metadata": {"signal_type": "missed_cross_sell"}}
+{"timestamp": "2026-07-18T14:28:36.358096", "stage": "end_to_end", "duration_ms": 0.17, "metadata": {"chunk_index": 3, "signal_type": "missed_cross_sell"}}
+{"timestamp": "2026-07-18T14:28:36.369021", "stage": "signal_detection", "duration_ms": 0.13, "metadata": {"chunk_index": 4, "timestamp": "00:00:40"}}
+{"timestamp": "2026-07-18T14:28:36.369064", "stage": "nudge_emission", "duration_ms": 0.02, "metadata": {"signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:28:36.369068", "stage": "end_to_end", "duration_ms": 0.18, "metadata": {"chunk_index": 4, "signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:28:36.381904", "stage": "signal_detection", "duration_ms": 0.13, "metadata": {"chunk_index": 5, "timestamp": "00:00:52"}}
+{"timestamp": "2026-07-18T14:28:36.381935", "stage": "nudge_emission", "duration_ms": 0.01, "metadata": {"signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:28:36.381939", "stage": "end_to_end", "duration_ms": 0.17, "metadata": {"chunk_index": 5, "signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:28:36.390639", "stage": "signal_detection", "duration_ms": 0.18, "metadata": {"chunk_index": 6, "timestamp": "00:01:00"}}
+{"timestamp": "2026-07-18T14:28:36.390743", "stage": "nudge_emission", "duration_ms": 0.04, "metadata": {"signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:28:36.390766", "stage": "end_to_end", "duration_ms": 0.32, "metadata": {"chunk_index": 6, "signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-18T14:28:36.403568", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 7, "timestamp": "00:01:12"}}
+{"timestamp": "2026-07-18T14:28:36.412608", "stage": "signal_detection", "duration_ms": 0.12, "metadata": {"chunk_index": 8, "timestamp": "00:01:20"}}
+{"timestamp": "2026-07-18T14:28:36.416416", "stage": "signal_detection", "duration_ms": 0.06, "metadata": {"chunk_index": 0, "timestamp": "00:00:02"}}
+{"timestamp": "2026-07-18T14:28:36.422748", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 1, "timestamp": "00:00:08"}}
+{"timestamp": "2026-07-18T14:28:36.433428", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 2, "timestamp": "00:00:18"}}
+{"timestamp": "2026-07-18T14:28:36.440176", "stage": "signal_detection", "duration_ms": 0.11, "metadata": {"chunk_index": 3, "timestamp": "00:00:24"}}
+{"timestamp": "2026-07-18T14:28:36.440215", "stage": "nudge_emission", "duration_ms": 0.02, "metadata": {"signal_type": "frustration"}}
+{"timestamp": "2026-07-18T14:28:36.440218", "stage": "end_to_end", "duration_ms": 0.16, "metadata": {"chunk_index": 3, "signal_type": "frustration"}}
+{"timestamp": "2026-07-18T14:28:36.448787", "stage": "signal_detection", "duration_ms": 0.1, "metadata": {"chunk_index": 4, "timestamp": "00:00:32"}}
+{"timestamp": "2026-07-18T14:28:36.457668", "stage": "signal_detection", "duration_ms": 0.11, "metadata": {"chunk_index": 5, "timestamp": "00:00:40"}}
+{"timestamp": "2026-07-18T14:28:36.470067", "stage": "signal_detection", "duration_ms": 0.09, "metadata": {"chunk_index": 6, "timestamp": "00:00:52"}}
+{"timestamp": "2026-07-18T14:28:36.480466", "stage": "signal_detection", "duration_ms": 0.11, "metadata": {"chunk_index": 7, "timestamp": "00:01:02"}}
+{"timestamp": "2026-07-18T14:28:36.480495", "stage": "nudge_emission", "duration_ms": 0.01, "metadata": {"signal_type": "frustration"}}
+{"timestamp": "2026-07-18T14:28:36.480499", "stage": "end_to_end", "duration_ms": 0.15, "metadata": {"chunk_index": 7, "signal_type": "frustration"}}
+{"timestamp": "2026-07-18T14:28:36.489372", "stage": "signal_detection", "duration_ms": 0.24, "metadata": {"chunk_index": 8, "timestamp": "00:01:10"}}
+{"timestamp": "2026-07-18T14:28:36.497008", "stage": "signal_detection", "duration_ms": 0.14, "metadata": {"chunk_index": 0, "timestamp": "00:00:02"}}
+{"timestamp": "2026-07-18T14:28:36.501743", "stage": "signal_detection", "duration_ms": 0.11, "metadata": {"chunk_index": 1, "timestamp": "00:00:06"}}
+{"timestamp": "2026-07-18T14:28:36.501773", "stage": "nudge_emission", "duration_ms": 0.01, "metadata": {"signal_type": "noisy_segment"}}
+{"timestamp": "2026-07-18T14:28:36.501777", "stage": "end_to_end", "duration_ms": 0.16, "metadata": {"chunk_index": 1, "signal_type": "noisy_segment"}}
+{"timestamp": "2026-07-18T14:28:36.510507", "stage": "signal_detection", "duration_ms": 0.24, "metadata": {"chunk_index": 2, "timestamp": "00:00:14"}}
+{"timestamp": "2026-07-18T14:28:36.517348", "stage": "signal_detection", "duration_ms": 0.11, "metadata": {"chunk_index": 3, "timestamp": "00:00:20"}}
+{"timestamp": "2026-07-18T14:28:36.517384", "stage": "nudge_emission", "duration_ms": 0.01, "metadata": {"signal_type": "noisy_segment"}}
+{"timestamp": "2026-07-18T14:28:36.517388", "stage": "end_to_end", "duration_ms": 0.16, "metadata": {"chunk_index": 3, "signal_type": "noisy_segment"}}
+{"timestamp": "2026-07-18T14:28:36.525937", "stage": "signal_detection", "duration_ms": 0.1, "metadata": {"chunk_index": 4, "timestamp": "00:00:28"}}
+{"timestamp": "2026-07-18T14:28:36.534549", "stage": "signal_detection", "duration_ms": 0.21, "metadata": {"chunk_index": 5, "timestamp": "00:00:36"}}
+{"timestamp": "2026-07-18T14:28:36.534645", "stage": "nudge_emission", "duration_ms": 0.05, "metadata": {"signal_type": "callback_need"}}
+{"timestamp": "2026-07-18T14:28:36.534661", "stage": "end_to_end", "duration_ms": 0.33, "metadata": {"chunk_index": 5, "signal_type": "callback_need"}}
+{"timestamp": "2026-07-18T14:28:36.534909", "stage": "nudge_emission", "duration_ms": 0.04, "metadata": {"signal_type": "noisy_segment"}}
+{"timestamp": "2026-07-18T14:28:36.534936", "stage": "end_to_end", "duration_ms": 0.59, "metadata": {"chunk_index": 5, "signal_type": "noisy_segment"}}
+{"timestamp": "2026-07-18T14:28:36.542353", "stage": "signal_detection", "duration_ms": 0.15, "metadata": {"chunk_index": 6, "timestamp": "00:00:42"}}

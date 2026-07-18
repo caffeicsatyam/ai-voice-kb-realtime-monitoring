@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickFund — Indonesia Finance Voice Bot</title>
+    <meta name="description" content="Consumer finance installment reminder agent for Indonesia in Bahasa Indonesia">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="app-container single-col">
+        <div class="header">
+            <h1>🇮🇩 Indonesia Consumer Finance Bot</h1>
+            <nav class="nav-links">
+                <a href="/">Q1: Loan Agent</a>
+                <a href="/philippines">Q3: Philippines</a>
+                <a href="/indonesia" class="active">Q3: Indonesia</a>
+                <a href="/dashboard">Q4: Nudges</a>
+            </nav>
+            <span class="badge id">● Bahasa</span>
+        </div>
+
+        <div class="chat-panel" style="max-height: calc(100vh - 120px);">
+            <div id="chat-messages" class="chat-messages"></div>
+            <div class="chat-input">
+                <button id="mic-btn" class="btn btn-mic" title="Voice input (Bahasa Indonesia)">🎤</button>
+                <input type="text" id="chat-input" placeholder="Tanyakan tentang cicilan, tenor, pembayaran, atau jatuh tempo..." autocomplete="off">
+                <button id="send-btn" class="btn btn-primary">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/voice.js"></script>
+    <script>
+        const agent = new VoiceAgent('indonesia');
+    </script>
+</body>
+</html>

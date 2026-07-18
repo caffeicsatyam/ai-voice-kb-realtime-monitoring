@@ -1,0 +1,71 @@
+{
+  "transcript_name": "noisy_call",
+  "chunks_processed": 7,
+  "nudges_emitted": [
+    {
+      "emitted": true,
+      "timestamp": "00:00:36",
+      "signal": "callback_need",
+      "priority": "low",
+      "confidence": 0.9,
+      "nudge": "Customer wants to think about it. Offer to schedule a specific callback time.",
+      "evidence": "call me back",
+      "expires_after_seconds": 60,
+      "nudge_count_for_type": 1
+    }
+  ],
+  "nudges_suppressed": [
+    {
+      "emitted": false,
+      "reason": "noisy_segment_detected",
+      "signal_type": "noisy_segment",
+      "note": "Suppressing other nudges during noisy/ambiguous audio."
+    },
+    {
+      "emitted": false,
+      "reason": "noisy_segment_detected",
+      "signal_type": "noisy_segment",
+      "note": "Suppressing other nudges during noisy/ambiguous audio."
+    },
+    {
+      "emitted": false,
+      "reason": "noisy_segment_detected",
+      "signal_type": "noisy_segment",
+      "note": "Suppressing other nudges during noisy/ambiguous audio."
+    }
+  ],
+  "latency_measurements": [
+    {
+      "chunk_index": 1,
+      "timestamp": "00:00:06",
+      "signal_type": "noisy_segment",
+      "detection_ms": 0.53,
+      "emission_ms": 0.07,
+      "total_ms": 0.75
+    },
+    {
+      "chunk_index": 3,
+      "timestamp": "00:00:20",
+      "signal_type": "noisy_segment",
+      "detection_ms": 0.52,
+      "emission_ms": 0.15,
+      "total_ms": 0.86
+    },
+    {
+      "chunk_index": 5,
+      "timestamp": "00:00:36",
+      "signal_type": "callback_need",
+      "detection_ms": 0.17,
+      "emission_ms": 0.05,
+      "total_ms": 0.29
+    },
+    {
+      "chunk_index": 5,
+      "timestamp": "00:00:36",
+      "signal_type": "noisy_segment",
+      "detection_ms": 0.17,
+      "emission_ms": 0.02,
+      "total_ms": 0.37
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickFund AI Voice Agent — Loan Qualification</title>
+    <meta name="description" content="AI-powered voice agent for small business loan qualification using Google ADK">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🏦 QuickFund Loan Qualification Agent</h1>
+            <nav class="nav-links">
+                <a href="/" class="active">Q1: Loan Agent</a>
+                <a href="/philippines">Q3: Philippines</a>
+                <a href="/indonesia">Q3: Indonesia</a>
+                <a href="/dashboard">Q4: Nudges</a>
+            </nav>
+            <span class="badge live">● ADK Live</span>
+        </div>
+
+        <!-- Chat Panel -->
+        <div class="chat-panel">
+            <div id="chat-messages" class="chat-messages">
+                <!-- Messages appear here -->
+            </div>
+            <div class="chat-input">
+                <button id="mic-btn" class="btn btn-mic" title="Start voice input">🎤</button>
+                <input type="text" id="chat-input" placeholder="Ask about business loans, eligibility, documents..." autocomplete="off">
+                <button id="send-btn" class="btn btn-primary">Send</button>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-card">
+                <h3>Agent Status</h3>
+                <div class="status-row">
+                    <span class="label">Agent</span>
+                    <span class="value">Loan Qualification</span>
+                </div>
+                <div class="status-row">
+                    <span class="label">Model</span>
+                    <span class="value">Gemini 2.0 Flash</span>
+                </div>
+                <div class="status-row">
+                    <span class="label">KB Status</span>
+                    <span class="value"><span class="status-dot green"></span>Connected</span>
+                </div>
+                <div class="status-row">
+                    <span class="label">ASR</span>
+                    <span class="value">Web Speech API</span>
+                </div>
+                <div class="status-row">
+                    <span class="label">TTS</span>
+                    <span class="value">Browser Synth</span>
+                </div>
+            </div>
+
+            <div class="sidebar-card">
+                <h3>Qualification Fields</h3>
+                <div class="status-row"><span class="label">Business Name</span><span id="q-name" class="value">—</span></div>
+                <div class="status-row"><span class="label">Business Age</span><span id="q-age" class="value">—</span></div>
+                <div class="status-row"><span class="label">Location</span><span id="q-location" class="value">—</span></div>
+                <div class="status-row"><span class="label">Revenue</span><span id="q-revenue" class="value">—</span></div>
+                <div class="status-row"><span class="label">Loan Amount</span><span id="q-amount" class="value">—</span></div>
+                <div class="status-row"><span class="label">Purpose</span><span id="q-purpose" class="value">—</span></div>
+                <div class="status-row"><span class="label">Status</span><span id="q-status" class="value"><span class="status-dot orange"></span>Pending</span></div>
+            </div>
+
+            <div class="sidebar-card">
+                <h3>ADK Tools</h3>
+                <div id="tool-log" style="max-height: 150px; overflow-y: auto; font-size: 0.75rem; color: var(--text-muted);">
+                    <p>Tool calls will appear here...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/voice.js"></script>
+    <script>
+        const agent = new VoiceAgent('loan');
+    </script>
+</body>
+</html>
