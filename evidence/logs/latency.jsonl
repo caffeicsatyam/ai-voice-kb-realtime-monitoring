@@ -321,3 +321,11 @@
 {"timestamp": "2026-07-18T15:27:45.165157", "stage": "signal_detection", "duration_ms": 0.59, "metadata": {"chunk_index": 8, "timestamp": "00:01:12"}}
 {"timestamp": "2026-07-18T15:28:25.165915", "stage": "signal_detection", "duration_ms": 0.18, "metadata": {"chunk_index": 9, "timestamp": "00:01:24"}}
 {"timestamp": "2026-07-18T15:28:45.167244", "stage": "signal_detection", "duration_ms": 0.17, "metadata": {"chunk_index": 10, "timestamp": "00:01:30"}}
+{"timestamp": "2026-07-18T15:35:59.249559", "stage": "agent_turn", "duration_ms": 12160.39, "metadata": {"agent": "loan", "fallback": true}}
+{"timestamp": "2026-07-18T15:36:30.370842", "stage": "agent_turn", "duration_ms": 8515.38, "metadata": {"agent": "loan", "fallback": true}}
+{"timestamp": "2026-07-18T15:37:05.677878", "stage": "agent_turn", "duration_ms": 9082.19, "metadata": {"agent": "loan", "fallback": true}}
+{"timestamp": "2026-07-18T15:41:30.395427", "stage": "agent_turn", "duration_ms": 6760.42, "metadata": {"agent": "philippines", "fallback": true}}
+{"timestamp": "2026-07-18T15:42:51.979053", "stage": "agent_turn", "duration_ms": 7467.29, "metadata": {"agent": "philippines", "fallback": true}}
+{"timestamp": "2026-07-18T15:44:09.822309", "stage": "agent_turn", "duration_ms": 6928.37, "metadata": {"agent": "philippines", "fallback": true}}
+{"timestamp": "2026-07-18T15:45:25.390193", "stage": "agent_turn", "duration_ms": 6426.56, "metadata": {"agent": "philippines", "fallback": true}}
+{"timestamp": "2026-07-18T15:45:48.957057", "stage": "agent_turn", "duration_ms": 9440.72, "metadata": {"agent": "philippines", "fallback": true}}

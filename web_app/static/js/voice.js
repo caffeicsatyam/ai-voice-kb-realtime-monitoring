@@ -7,12 +7,14 @@ class VoiceAgent {
         this.agentType = agentType;
         this.sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`;
         this.isRecording = false;
+        this.isMuted = false;
         this.recognition = null;
         this.synthesis = window.speechSynthesis;
         this.messageContainer = document.getElementById('chat-messages');
         this.inputField = document.getElementById('chat-input');
         this.sendBtn = document.getElementById('send-btn');
         this.micBtn = document.getElementById('mic-btn');
+        this.stopVoiceBtn = document.getElementById('stop-voice-btn');
         this.statusEl = document.getElementById('connection-status');
         
         this.setupEventListeners();
@@ -31,6 +33,9 @@ class VoiceAgent {
         }
         if (this.micBtn) {
             this.micBtn.addEventListener('click', () => this.toggleRecording());
+        }
+        if (this.stopVoiceBtn) {
+            this.stopVoiceBtn.addEventListener('click', () => this.toggleVoice());
         }
     }
 
@@ -191,7 +196,7 @@ class VoiceAgent {
     }
 
     speak(text) {
-        if (!this.synthesis) return;
+        if (!this.synthesis || this.isMuted) return;
         
         // Cancel any ongoing speech
         this.synthesis.cancel();
@@ -214,6 +219,30 @@ class VoiceAgent {
         }
         
         this.synthesis.speak(utterance);
+    }
+
+    toggleVoice() {
+        this.isMuted = !this.isMuted;
+        if (this.isMuted) {
+            if (this.synthesis) {
+                this.synthesis.cancel();
+            }
+            if (this.stopVoiceBtn) {
+                this.stopVoiceBtn.textContent = '🔇';
+                this.stopVoiceBtn.title = 'Unmute Agent Voice';
+                this.stopVoiceBtn.style.background = 'rgba(239, 68, 68, 0.2)';
+                this.stopVoiceBtn.style.color = 'var(--accent-red)';
+                this.stopVoiceBtn.style.borderColor = 'rgba(239, 68, 68, 0.3)';
+            }
+        } else {
+            if (this.stopVoiceBtn) {
+                this.stopVoiceBtn.textContent = '🔊';
+                this.stopVoiceBtn.title = 'Mute Agent Voice';
+                this.stopVoiceBtn.style.background = 'rgba(16, 185, 129, 0.2)';
+                this.stopVoiceBtn.style.color = 'var(--accent-green)';
+                this.stopVoiceBtn.style.borderColor = 'rgba(16, 185, 129, 0.3)';
+            }
+        }
     }
 }
 
