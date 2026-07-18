@@ -1,4 +1,4 @@
-﻿# AI Voice ADK Assessment
+# AI Voice ADK Assessment
 
 A free/local-first implementation of the AI Engineer assessment. Google ADK orchestrates four specialized agents; FastAPI supplies a browser voice interface and local dashboard; the knowledge base and nudge pipeline run locally.
 
@@ -31,18 +31,19 @@ flowchart LR
 
 ## Stack and Cost
 
-- Google ADK and Gemini are the optional orchestration/model path.
+- Google ADK and Gemini are the primary orchestration/model path.
 - Browser Web Speech API provides microphone ASR and TTS where supported.
 - Local JSONL plus BM25 provides retrieval; no vector database is required.
 - FastAPI, WebSocket, and the mock CRM are local.
 - The deterministic nudge pipeline works with no API key.
+- LangChain + Groq can provide a fallback response path when the ADK/model call fails and `GROQ_API_KEY` is configured.
 - Ollama can replace Gemini for a local model path after the adapter is configured.
 
 ## Quick Start
 
 1. Create and activate a Python 3.11+ virtual environment.
 2. Install dependencies: `python -m pip install -r requirements.txt`
-3. Copy `.env.example` to `.env` and set `GOOGLE_API_KEY` only if you will invoke Gemini-backed ADK conversations.
+3. Copy `.env.example` to `.env`; set `GOOGLE_API_KEY` for the primary ADK path and optionally set `GROQ_API_KEY` for the LangChain/Groq fallback.
 4. Build the knowledge base: `python -m kb_builder.build_kb`
 5. Run tests: `python -m pytest tests/ -v --tb=short`
 6. Start the app: `python -m uvicorn web_app.main:app --reload --port 8000`

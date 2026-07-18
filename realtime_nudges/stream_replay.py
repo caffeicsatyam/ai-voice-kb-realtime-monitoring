@@ -1,4 +1,4 @@
-﻿"""
+"""
 Real-Time Stream Replay
 Replays pre-recorded transcripts at simulated real-time speed,
 sending chunks to the nudge pipeline and measuring latency.
@@ -10,6 +10,9 @@ import sys
 import os
 from pathlib import Path
 from datetime import datetime
+from typing import Optional
+from urllib import request as urlrequest
+from urllib.error import HTTPError, URLError
 
 # Add project root to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -67,6 +70,51 @@ SAMPLE_TRANSCRIPTS = {
     ],
 }
 
+
+
+_cached_nudge_api_url: Optional[str] = None
+_web_warning_shown = False
+
+
+def _candidate_nudge_api_urls(api_url: Optional[str] = None) -> list[str]:
+    """Return likely local dashboard event endpoints."""
+    explicit = (api_url or os.environ.get("NUDGE_API_URL", "")).strip()
+    if explicit:
+        return [explicit]
+
+    port = os.environ.get("PORT", "8000").strip() or "8000"
+    candidates = [
+        f"http://127.0.0.1:{port}/api/nudge-event",
+        "http://127.0.0.1:8000/api/nudge-event",
+        "http://127.0.0.1:8001/api/nudge-event",
+    ]
+    return list(dict.fromkeys(candidates))
+
+
+def _post_nudge_event(payload: dict, api_url: Optional[str] = None) -> bool:
+    """Post one replay event to the FastAPI dashboard, if reachable."""
+    global _cached_nudge_api_url, _web_warning_shown
+
+    endpoints = [_cached_nudge_api_url] if _cached_nudge_api_url else _candidate_nudge_api_urls(api_url)
+    data = json.dumps(payload).encode("utf-8")
+    headers = {"Content-Type": "application/json"}
+
+    for endpoint in [url for url in endpoints if url]:
+        try:
+            req = urlrequest.Request(endpoint, data=data, headers=headers, method="POST")
+            with urlrequest.urlopen(req, timeout=2) as response:
+                if 200 <= response.status < 300:
+                    _cached_nudge_api_url = endpoint
+                    return True
+        except (HTTPError, URLError, TimeoutError, OSError) as exc:
+            if api_url or endpoint == endpoints[-1]:
+                if not _web_warning_shown:
+                    print(f"[web] Could not post replay events to dashboard: {exc}")
+                    print("[web] Set NUDGE_API_URL=http://127.0.0.1:<port>/api/nudge-event if your app uses a custom port.")
+                    _web_warning_shown = True
+            continue
+
+    return False
 
 def replay_transcript(
     transcript_name: str = "cooperative",

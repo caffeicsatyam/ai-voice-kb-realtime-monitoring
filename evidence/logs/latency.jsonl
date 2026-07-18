@@ -305,3 +305,8 @@
 {"timestamp": "2026-07-18T14:28:36.534909", "stage": "nudge_emission", "duration_ms": 0.04, "metadata": {"signal_type": "noisy_segment"}}
 {"timestamp": "2026-07-18T14:28:36.534936", "stage": "end_to_end", "duration_ms": 0.59, "metadata": {"chunk_index": 5, "signal_type": "noisy_segment"}}
 {"timestamp": "2026-07-18T14:28:36.542353", "stage": "signal_detection", "duration_ms": 0.15, "metadata": {"chunk_index": 6, "timestamp": "00:00:42"}}
+{"timestamp": "2026-07-18T15:18:58.673662", "stage": "agent_turn", "duration_ms": 10516.76, "metadata": {"agent": "loan", "fallback": true}}
+{"timestamp": "2026-07-18T15:19:15.088068", "stage": "agent_turn", "duration_ms": 4162.57, "metadata": {"agent": "loan", "fallback": true}}
+{"timestamp": "2026-07-18T15:20:32.501902", "stage": "agent_turn", "duration_ms": 3535.52, "metadata": {"agent": "indonesia", "fallback": true}}
+{"timestamp": "2026-07-18T15:21:07.528534", "stage": "agent_turn", "duration_ms": 4210.12, "metadata": {"agent": "philippines", "fallback": true}}
+{"timestamp": "2026-07-18T15:24:30.299955", "stage": "agent_turn", "duration_ms": 3170.05, "metadata": {"agent": "nudge", "fallback": true}}

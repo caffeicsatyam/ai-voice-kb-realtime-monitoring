@@ -34,6 +34,10 @@ from adk_app.agents.indonesia_voice_agent import indonesia_voice_agent
 from adk_app.agents.realtime_nudge_agent import realtime_nudge_agent
 from adk_app.callbacks.citation_guard import log_citation_usage
 from adk_app.callbacks.latency_logger import latency_tracker
+from web_app.langchain_middleware import (
+    GroqFallbackUnavailable,
+    LangChainGroqFallbackMiddleware,
+)
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -60,6 +64,7 @@ templates = Jinja2Templates(directory=str(web_dir / "templates"))
 
 # === ADK Session Management ===
 session_service = InMemorySessionService()
+groq_fallback = LangChainGroqFallbackMiddleware()
 
 # Agent map for routing
 AGENT_MAP = {
@@ -71,59 +76,92 @@ AGENT_MAP = {
 
 # Store conversation transcripts
 transcripts = {}  # session_id -> list of messages
+last_turn_fallback = {}  # session_id -> bool
 
 # WebSocket connections for nudge dashboard
 nudge_clients: list[WebSocket] = []
 
 
 async def run_agent_turn(agent_name: str, session_id: str, user_message: str) -> str:
-    """Run a single turn with the specified ADK agent."""
+    """Run a single turn with ADK, falling back to LangChain/Groq on failure."""
     agent = AGENT_MAP.get(agent_name, loan_qualification_agent)
-    
+
     runner = Runner(
         agent=agent,
         app_name="quickfund_assessment",
         session_service=session_service,
+        auto_create_session=True,
     )
-    
+
     user_content = types.Content(
         role="user",
         parts=[types.Part.from_text(text=user_message)],
     )
-    
+
     start_time = time.time()
     response_text = ""
     tool_calls_log = []
-    
-    async for event in runner.run_async(
-        user_id="demo_user",
-        session_id=session_id,
-        new_message=user_content,
-    ):
-        if event.is_final_response():
-            if event.content and event.content.parts:
-                response_text = "\n".join(
-                    part.text for part in event.content.parts if part.text
-                )
-        
-        # Log tool calls for evidence
-        if hasattr(event, 'function_calls') and event.function_calls:
-            for fc in event.function_calls:
-                tool_call = {
-                    "tool": fc.name,
-                    "args": dict(fc.args) if fc.args else {},
-                    "timestamp": datetime.now().isoformat(),
-                }
-                tool_calls_log.append(tool_call)
-                
-                # Log KB retrievals specifically
-                if fc.name == "retrieve_kb":
-                    log_citation_usage(fc.name, dict(fc.args) if fc.args else {}, "")
-    
+    used_fallback = False
+
+    try:
+        async for event in runner.run_async(
+            user_id="demo_user",
+            session_id=session_id,
+            new_message=user_content,
+        ):
+            if event.is_final_response():
+                if event.content and event.content.parts:
+                    response_text = "\n".join(
+                        part.text for part in event.content.parts if part.text
+                    )
+
+            # Log tool calls for evidence
+            if hasattr(event, "function_calls") and event.function_calls:
+                for fc in event.function_calls:
+                    tool_call = {
+                        "tool": fc.name,
+                        "args": dict(fc.args) if fc.args else {},
+                        "timestamp": datetime.now().isoformat(),
+                    }
+                    tool_calls_log.append(tool_call)
+
+                    # Log KB retrievals specifically
+                    if fc.name == "retrieve_kb":
+                        log_citation_usage(fc.name, dict(fc.args) if fc.args else {}, "")
+    except Exception as exc:
+        logger.warning(
+            "ADK agent failed; attempting LangChain Groq fallback: %s",
+            exc,
+            exc_info=True,
+        )
+        try:
+            response_text = await groq_fallback.generate(
+                agent_name=agent_name,
+                session_id=session_id,
+                user_message=user_message,
+                failure_reason=f"{type(exc).__name__}: {exc}",
+            )
+            used_fallback = True
+            tool_calls_log.append({
+                "tool": "langchain_groq_fallback",
+                "args": {
+                    "agent": agent_name,
+                    "model": groq_fallback.model,
+                },
+                "timestamp": datetime.now().isoformat(),
+            })
+        except GroqFallbackUnavailable as fallback_exc:
+            logger.error("LangChain Groq fallback unavailable: %s", fallback_exc)
+            raise exc from fallback_exc
+
     end_time = time.time()
     latency_ms = (end_time - start_time) * 1000
-    latency_tracker.record("agent_turn", latency_ms, {"agent": agent_name})
-    
+    latency_tracker.record("agent_turn", latency_ms, {
+        "agent": agent_name,
+        "fallback": used_fallback,
+    })
+    last_turn_fallback[session_id] = used_fallback
+
     # Store transcript
     if session_id not in transcripts:
         transcripts[session_id] = []
@@ -138,35 +176,35 @@ async def run_agent_turn(agent_name: str, session_id: str, user_message: str) ->
         "timestamp": datetime.now().isoformat(),
         "tool_calls": tool_calls_log,
         "latency_ms": round(latency_ms, 2),
+        "fallback": used_fallback,
     })
-    
-    return response_text
 
+    return response_text
 
 # === Page Routes ===
 
 @app.get("/")
 async def index(request: Request):
     """Main voice agent page (Q1)."""
-    return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse(request, "index.html")
 
 
 @app.get("/philippines")
 async def philippines_page(request: Request):
     """Philippines bot page (Q3)."""
-    return templates.TemplateResponse("philippines.html", {"request": request})
+    return templates.TemplateResponse(request, "philippines.html")
 
 
 @app.get("/indonesia")
 async def indonesia_page(request: Request):
     """Indonesia bot page (Q3)."""
-    return templates.TemplateResponse("indonesia.html", {"request": request})
+    return templates.TemplateResponse(request, "indonesia.html")
 
 
 @app.get("/dashboard")
 async def dashboard_page(request: Request):
     """Real-time nudge dashboard (Q4)."""
-    return templates.TemplateResponse("dashboard.html", {"request": request})
+    return templates.TemplateResponse(request, "dashboard.html")
 
 
 # === API Routes ===
@@ -191,6 +229,7 @@ async def chat_endpoint(request: Request):
             "response": response,
             "session_id": session_id,
             "agent": agent_name,
+            "fallback": last_turn_fallback.get(session_id, False),
         })
     except Exception as e:
         logger.error(f"Agent error: {e}", exc_info=True)
