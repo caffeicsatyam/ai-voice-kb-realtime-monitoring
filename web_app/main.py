@@ -424,12 +424,18 @@ async def nudge_analyze_endpoint(request: Request):
     try:
         result = await run_agent_turn("nudge", session_id, prompt)
         
+        analysis_text = result["response"]
+        is_clean = "no actionable signals" in analysis_text.lower()
+        
         # Broadcast to WebSocket clients
         nudge_data = {
             "timestamp": timestamp,
             "chunk": chunk,
             "speaker": speaker,
-            "analysis": result["response"],
+            "analysis": analysis_text,
+            "emitted": not is_clean,
+            "event_type": "nudge" if not is_clean else "suppressed",
+            "reason": analysis_text if is_clean else None,
             "received_at": datetime.now().isoformat(),
         }
         for client in nudge_clients:

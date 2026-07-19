@@ -1,0 +1,47 @@
+{
+  "transcript_name": "test_custom",
+  "chunks_processed": 3,
+  "nudges_emitted": [
+    {
+      "emitted": true,
+      "timestamp": "00:00:10",
+      "signal": "missed_cross_sell",
+      "priority": "medium",
+      "confidence": 0.8,
+      "nudge": "Consider mentioning insurance or savings products  customer may benefit from additional coverage or financial products.",
+      "evidence": "just need the loan",
+      "expires_after_seconds": 45,
+      "nudge_count_for_type": 1
+    },
+    {
+      "emitted": true,
+      "timestamp": "00:00:15",
+      "signal": "missing_disclosure",
+      "priority": "high",
+      "confidence": 0.95,
+      "nudge": " Add disclosure: Final approval is subject to document verification. Terms and conditions apply.",
+      "evidence": "definitely; approved; no additional fees",
+      "expires_after_seconds": 30,
+      "nudge_count_for_type": 1
+    }
+  ],
+  "nudges_suppressed": [],
+  "latency_measurements": [
+    {
+      "chunk_index": 1,
+      "timestamp": "00:00:10",
+      "signal_type": "missed_cross_sell",
+      "detection_ms": 0.18,
+      "emission_ms": 0.06,
+      "total_ms": 0.3
+    },
+    {
+      "chunk_index": 2,
+      "timestamp": "00:00:15",
+      "signal_type": "missing_disclosure",
+      "detection_ms": 0.78,
+      "emission_ms": 0.7,
+      "total_ms": 1.75
+    }
+  ]
+}

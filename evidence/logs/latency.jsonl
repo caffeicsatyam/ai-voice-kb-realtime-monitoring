@@ -344,3 +344,19 @@
 {"timestamp": "2026-07-19T01:01:32.086954", "stage": "signal_detection", "duration_ms": 0.71, "metadata": {"chunk_index": 8, "timestamp": "00:01:12"}}
 {"timestamp": "2026-07-19T01:02:14.102004", "stage": "signal_detection", "duration_ms": 0.65, "metadata": {"chunk_index": 9, "timestamp": "00:01:24"}}
 {"timestamp": "2026-07-19T01:02:36.145221", "stage": "signal_detection", "duration_ms": 0.93, "metadata": {"chunk_index": 10, "timestamp": "00:01:30"}}
+{"timestamp": "2026-07-19T09:36:41.042195", "stage": "agent_turn", "duration_ms": 4609.6, "metadata": {"agent": "nudge", "fallback": false}}
+{"timestamp": "2026-07-19T09:41:17.861640", "stage": "agent_turn", "duration_ms": 8297.34, "metadata": {"agent": "nudge", "fallback": false}}
+{"timestamp": "2026-07-19T09:42:25.343498", "stage": "agent_turn", "duration_ms": 4748.57, "metadata": {"agent": "nudge", "fallback": false}}
+{"timestamp": "2026-07-19T09:51:16.609923", "stage": "agent_turn", "duration_ms": 4812.13, "metadata": {"agent": "nudge", "fallback": false}}
+{"timestamp": "2026-07-19T09:51:51.091041", "stage": "agent_turn", "duration_ms": 7498.02, "metadata": {"agent": "nudge", "fallback": false}}
+{"timestamp": "2026-07-19T10:16:19.423492", "stage": "signal_detection", "duration_ms": 2.28, "metadata": {"chunk_index": 0, "timestamp": "00:00:02"}}
+{"timestamp": "2026-07-19T10:16:27.424320", "stage": "signal_detection", "duration_ms": 0.18, "metadata": {"chunk_index": 1, "timestamp": "00:00:10"}}
+{"timestamp": "2026-07-19T10:16:27.424421", "stage": "nudge_emission", "duration_ms": 0.06, "metadata": {"signal_type": "missed_cross_sell"}}
+{"timestamp": "2026-07-19T10:16:27.424430", "stage": "end_to_end", "duration_ms": 0.3, "metadata": {"chunk_index": 1, "signal_type": "missed_cross_sell"}}
+{"timestamp": "2026-07-19T10:16:32.426210", "stage": "signal_detection", "duration_ms": 0.78, "metadata": {"chunk_index": 2, "timestamp": "00:00:15"}}
+{"timestamp": "2026-07-19T10:16:32.427210", "stage": "nudge_emission", "duration_ms": 0.7, "metadata": {"signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-19T10:16:32.427320", "stage": "end_to_end", "duration_ms": 1.75, "metadata": {"chunk_index": 2, "signal_type": "missing_disclosure"}}
+{"timestamp": "2026-07-19T10:13:50.323790", "stage": "agent_turn", "duration_ms": 5687.73, "metadata": {"agent": "nudge", "fallback": false}}
+{"timestamp": "2026-07-19T10:14:29.005836", "stage": "agent_turn", "duration_ms": 5912.15, "metadata": {"agent": "nudge", "fallback": false}}
+{"timestamp": "2026-07-19T10:15:15.913932", "stage": "agent_turn", "duration_ms": 9272.06, "metadata": {"agent": "nudge", "fallback": false}}
+{"timestamp": "2026-07-19T10:17:19.279528", "stage": "agent_turn", "duration_ms": 12796.94, "metadata": {"agent": "nudge", "fallback": false}}

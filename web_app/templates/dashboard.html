@@ -143,7 +143,9 @@
                     }),
                 });
                 const data = await resp.json();
-                dashboard.addNudge(data);
+                // We don't call dashboard.addNudge(data) here because 
+                // the /api/nudge-analyze endpoint broadcasts it via WebSocket,
+                // which will receive and render it automatically.
             } catch (e) {
                 console.error('Test nudge error:', e);
             }

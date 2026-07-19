@@ -1,0 +1,2 @@
+{"role": "user", "content": "Analyze this transcript chunk for signals. Speaker: agent. Timestamp: 09:36:33. Chunk: \"AGENT: Good morning! Thank you for calling QuickFund Lending. My name is Maya, and I'll...\"", "timestamp": "2026-07-19T09:36:42.021425"}
+{"role": "agent", "content": "No actionable signals detected.", "timestamp": "2026-07-19T09:36:42.021455", "tool_calls": [], "latency_ms": 4609.6, "fallback": false, "guardrail": {}}

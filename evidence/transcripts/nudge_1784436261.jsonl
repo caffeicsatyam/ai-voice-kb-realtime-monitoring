@@ -1,0 +1,2 @@
+{"role": "user", "content": "Analyze this transcript chunk for signals. Speaker: customer. Timestamp: 10:14:21. Chunk: \"[00:00:28] CUSTOMER: We've been open for about two years now. Business has been good, averaging aroun...\"", "timestamp": "2026-07-19T10:14:31.935767"}
+{"role": "agent", "content": "No actionable signals detected.", "timestamp": "2026-07-19T10:14:31.935824", "tool_calls": [], "latency_ms": 5912.15, "fallback": false, "guardrail": {}}
